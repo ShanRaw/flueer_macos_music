@@ -6,6 +6,7 @@ class MenuState with ChangeNotifier {
 
   List<Menu> _menus = [
     Menu(title: '发现音乐', icon: '', path: '/home'),
+    Menu(title: '精彩歌单', icon: '', path: '/song_list'),
     Menu(title: '私人FM', icon: '', path: '/fm'),
   ];
 
@@ -15,6 +16,18 @@ class MenuState with ChangeNotifier {
 
   void update({int? sidebarActive}) {
     _sidebarActive = sidebarActive ?? _sidebarActive;
+    notifyListeners();
+  }
+
+  void changeForRouteName(String name) {
+    if (name == '/') {
+      _sidebarActive = 0;
+      notifyListeners();
+      return;
+    }
+    final int res = _menus.indexWhere((element) => element.path == name);
+    if (res == -1) return;
+    _sidebarActive = res;
     notifyListeners();
   }
 

@@ -3,6 +3,7 @@ import 'package:music/components/custom_app_bar/index.dart';
 import 'package:music/components/custom_sidebar/index.dart';
 import 'package:music/components/music_controller/index.dart';
 import 'package:music/components/play_list_modal/index.dart';
+import 'package:music/components/route_observer/index.dart';
 import 'package:music/pages/home/index.dart';
 import 'package:music/routes/index.dart';
 import 'package:music/state/music.dart';
@@ -28,14 +29,16 @@ class MainPage extends StatelessWidget {
                   Expanded(
                       child: Navigator(
                     key: ChildNavigator.key,
-                    // initialRoute: '/home',
+                    observers: [ChildNavigator.routeObserver],
                     onGenerateRoute: (RouteSettings setting) {
-                      WidgetBuilder builder =
-                          routes[setting.name] ?? (_) => HomePage();
+                      WidgetBuilder builder = routes[setting.name] ??
+                          (_) => CustomRouteObserver(child: HomePage());
                       return PageRouteBuilder(
                           transitionDuration: Duration.zero,
                           reverseTransitionDuration: Duration.zero,
-                          pageBuilder: (_, __, ___) => builder(_),
+                          pageBuilder: (_, __, ___) => CustomRouteObserver(
+                                child: builder(_),
+                              ),
                           // transitionDuration: Duration.zero,
                           settings: setting);
                     },
