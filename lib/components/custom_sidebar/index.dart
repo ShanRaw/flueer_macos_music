@@ -46,7 +46,7 @@ class CustomSidebar extends StatelessWidget {
                   menu: menuState.menus[index],
                   active: index == menuState.sidebarActive,
                   onPressed: () {
-                    ChildNavigator.push(menuState.menus[index].path);
+                    ChildNavigator.replace(menuState.menus[index].path);
                     menuState.update(sidebarActive: index);
                   },
                 ),

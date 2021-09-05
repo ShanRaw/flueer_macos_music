@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:music/models/automation/personalized_response_entity.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:music/utils/child_navigator.dart';
+import 'package:music/utils/image_deault.dart';
 
 class SongListItem extends StatelessWidget {
   final PersonalizedResponseResult item;
@@ -30,7 +31,8 @@ class SongListItem extends StatelessWidget {
                     width: 195,
                     height: 195,
                     fit: BoxFit.fill,
-                    placeholder: (context, url) => Placeholder(),
+                    placeholder: (context, url) => ImageDefault.placeholder,
+                    errorWidget: (_, __, ___) => ImageDefault.defaultImageWhite,
                   ),
                 ),
                 Positioned(
@@ -39,7 +41,7 @@ class SongListItem extends StatelessWidget {
                   child: Row(
                     children: [
                       Icon(
-                        Icons.airplay_rounded,
+                        Icons.play_arrow_rounded,
                         color: Colors.white70,
                         size: 10,
                       ),

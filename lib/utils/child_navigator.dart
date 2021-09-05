@@ -10,6 +10,9 @@ class ChildNavigator {
   static push(String name, {Object? arguments}) =>
       key.currentState?.pushNamed(name, arguments: arguments);
 
+  static replace(String name, {Object? arguments}) =>
+      key.currentState?.pushReplacementNamed(name, arguments: arguments);
+
   static maybePop() => key.currentState?.maybePop();
   static pop() => key.currentState?.pop();
 }

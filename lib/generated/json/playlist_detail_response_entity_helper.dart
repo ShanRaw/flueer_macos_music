@@ -1,4 +1,4 @@
-import 'package:music/models/automation/playlistDetail_response_entity.dart';
+import 'package:music/models/automation/playlist_detail_response_entity.dart';
 
 playlistDetailResponseEntityFromJson(PlaylistDetailResponseEntity data, Map<String, dynamic> json) {
 	if (json['code'] != null) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music/config/apis.dart';
-import 'package:music/models/automation/playlistDetail_response_entity.dart';
+import 'package:music/models/automation/playlist_detail_response_entity.dart';
 import 'package:music/utils/http.dart';
 import 'index.dart';
 

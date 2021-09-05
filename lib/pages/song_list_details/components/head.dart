@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:music/models/automation/playlistDetail_response_entity.dart';
+import 'package:music/models/automation/playlist_detail_response_entity.dart';
 import 'package:music/state/music.dart';
 import 'package:date_format/date_format.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:music/utils/image_deault.dart';
 import 'package:provider/provider.dart';
 
 class SongListDetailsHead extends StatelessWidget {
@@ -24,8 +25,8 @@ class SongListDetailsHead extends StatelessWidget {
               width: 200,
               height: 200,
               fit: BoxFit.fill,
-              placeholder: (_, __) => Placeholder(),
-              errorWidget: (_, __, ___) => Placeholder(),
+              placeholder: (context, url) => ImageDefault.placeholder,
+              errorWidget: (_, __, ___) => ImageDefault.defaultImageWhite,
             ),
           ),
           SizedBox(
@@ -213,7 +214,7 @@ class SongListDetailsHead extends StatelessWidget {
                       style: TextStyle(fontSize: 12, color: Colors.white60),
                       children: [
                         TextSpan(text: '简介：'),
-                        TextSpan(text: '${data?.playlist?.description}'),
+                        TextSpan(text: '${data?.playlist?.description??''}'),
                       ]))
             ],
           )),

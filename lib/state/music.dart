@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:audioplayers/audioplayers_api.dart';
 import 'package:flutter/material.dart';
-import 'package:music/models/automation/playlistDetail_response_entity.dart';
+import 'package:music/models/automation/playlist_detail_response_entity.dart';
 import 'package:music/utils/player.dart';
 
 enum PlayControlState { ONE, LOOP, RANDOM_LOOP }

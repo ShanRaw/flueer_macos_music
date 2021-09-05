@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:music/state/music.dart';
 import 'package:music/utils/custom_dialog.dart';
 import 'package:music/utils/function.dart';
+import 'package:music/utils/image_deault.dart';
 import 'package:provider/provider.dart';
 import 'package:music/utils/int_expansion.dart';
 
@@ -31,8 +32,8 @@ class MusicControllerInfo extends StatelessWidget {
                     width: 40,
                     height: 40,
                     fit: BoxFit.cover,
-                    errorWidget: (_, __, ___) =>
-                        Image.asset('assets/images/playlist_playlist.9.png'),
+                    placeholder: (context, url) => ImageDefault.placeholder,
+                    errorWidget: (_, __, ___) => ImageDefault.defaultImageWhite,
                   ),
             borderRadius: BorderRadius.circular(5),
           ),

@@ -15,4 +15,15 @@ class Apis {
   static Api get playlistDetail =>
       Api(method: 'get', url: '/playlist/detail', auth: true);
 
+  //热门歌单分类
+  static Api get playlistHot =>
+      Api(method: 'get', url: '/playlist/hot', auth: true);
+
+  //获取歌单
+  static Api get topPlaylist =>
+      Api(method: 'get', url: '/top/playlist', auth: true);
+
+  //获取精品歌单
+  static Api get topPlaylistHighquality =>
+      Api(method: 'get', url: '/top/playlist/highquality', auth: true);
 }
