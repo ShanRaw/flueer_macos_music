@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:music/state/music.dart';
-import 'package:music/utils/custom_dialog.dart';
 import 'package:music/utils/function.dart';
 import 'package:music/utils/image_deault.dart';
 import 'package:provider/provider.dart';

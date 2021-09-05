@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:music/components/search_bar/index.dart';
+import 'package:music/components/search_bar.dart';
 
 class CustomAppBar extends StatefulWidget {
   @override

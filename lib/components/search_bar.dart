@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:music/components/search_bar/module.dart';
 
 class SearchBar extends StatefulWidget {
   @override
   _SearchBarState createState() => _SearchBarState();
 }
 
-class _SearchBarState extends State<SearchBar> with SearchBarModule {
+class _SearchBarState extends State<SearchBar>  {
   @override
   Widget build(BuildContext context) {
     return Container(

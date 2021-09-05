@@ -16,6 +16,8 @@ class _HomePageState extends State<HomePage> {
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
       if (context.read<HomeState>().recommendationList.length == 0) {
         context.read<HomeState>().refresh.currentState?.show();
+      } else {
+        context.read<HomeState>().onRefresh();
       }
     });
   }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:music/components/custom_app_bar/index.dart';
+import 'package:music/components/custom_app_bar.dart';
 import 'package:music/components/custom_sidebar/index.dart';
 import 'package:music/components/music_controller/index.dart';
-import 'package:music/components/play_list_modal/index.dart';
-import 'package:music/components/route_observer/index.dart';
+import 'package:music/components/play_list_modal.dart';
+import 'package:music/components/route_observer.dart';
 import 'package:music/pages/home/index.dart';
 import 'package:music/routes/index.dart';
 import 'package:music/state/music.dart';
