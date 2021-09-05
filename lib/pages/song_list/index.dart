@@ -1,17 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:music/pages/song_list/model.dart';
-
-import 'components/fine_song_list.dart';
-import 'components/list/index.dart';
+import 'package:music/pages/song_list/state.dart';
+import 'components/fine_song_head.dart';
+import 'components/song_list_body.dart';
+import 'package:provider/provider.dart';
 
 class SongListPage extends StatefulWidget {
   @override
   _SongListPageState createState() => _SongListPageState();
 }
 
-class _SongListPageState extends State<SongListPage> with SongListPageModel {
+class _SongListPageState extends State<SongListPage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      context.read<SongListSate>().getTags();
+      context.read<SongListSate>().changeTab(0);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+    final tags = context.watch<SongListSate>().tags;
+    final changeTab = context.read<SongListSate>().changeTab;
     return DefaultTabController(
       length: tags.length,
       child: Padding(
@@ -19,11 +33,7 @@ class _SongListPageState extends State<SongListPage> with SongListPageModel {
         child: Column(
           children: [
             //精品歌单
-            fine == null
-                ? SizedBox(height: 150,)
-                : FineSongList(
-                    item: fine,
-                  ),
+            FineSongHead(),
             //tab选项卡
             Container(
               width: double.infinity,
@@ -45,17 +55,18 @@ class _SongListPageState extends State<SongListPage> with SongListPageModel {
                     .toList(),
               ),
             ),
-            Expanded(
-                child: TabBarView(
-                    children: tags
-                        .map((e) => SongListBody(
-                              tag: e,
-                            ))
-                        .toList()))
+            SizedBox(
+              height: 15,
+            ),
             //内容区域
+            Expanded(child: SongListBody())
           ],
         ),
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

@@ -1,17 +1,15 @@
 import 'dart:ui';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:music/models/automation/fine_song_list_response_entity.dart';
+import 'package:music/pages/song_list/state.dart';
 import 'package:music/utils/image_deault.dart';
+import 'package:provider/provider.dart';
 
-class FineSongList extends StatelessWidget {
-  final FineSongListResponsePlaylists? item;
-
-  FineSongList({this.item});
-
+class FineSongHead extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final item = context.watch<SongListSate>().fine;
+    if (item == null) return Container();
     return Container(
       height: 150,
       clipBehavior: Clip.antiAlias,
@@ -19,7 +17,7 @@ class FineSongList extends StatelessWidget {
           color: Color(0xff485A65),
           borderRadius: BorderRadius.circular(5),
           image: DecorationImage(
-              image: CachedNetworkImageProvider(item?.coverImgUrl ?? ''),
+              image: CachedNetworkImageProvider(item.coverImgUrl ?? ''),
               fit: BoxFit.cover)),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
@@ -30,7 +28,7 @@ class FineSongList extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(5),
                 child: CachedNetworkImage(
-                  imageUrl: item?.coverImgUrl ?? '',
+                  imageUrl: item.coverImgUrl ?? '',
                   width: 120,
                   height: 120,
                   fit: BoxFit.fill,
@@ -69,7 +67,7 @@ class FineSongList extends StatelessWidget {
                     height: 15,
                   ),
                   Text(
-                    item?.name ?? '',
+                    item.name ?? '',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(color: Colors.white, fontSize: 16),
@@ -78,7 +76,7 @@ class FineSongList extends StatelessWidget {
                     height: 7,
                   ),
                   Text(
-                    item?.copywriter ?? '',
+                    item.copywriter ?? '',
                     style: TextStyle(
                         fontSize: 12, color: Colors.white.withOpacity(.6)),
                   )

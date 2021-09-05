@@ -15,9 +15,10 @@ class SongListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: 195,
       height: 250,
+      margin: EdgeInsets.symmetric(vertical: 9),
       child: TextButton(
         onPressed: goDetail,
         child: Column(
@@ -49,7 +50,7 @@ class SongListItem extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                        '${item.playCount}',
+                        '${item.playCount ?? ''}',
                         style: TextStyle(fontSize: 10, color: Colors.white70),
                       )
                     ],
@@ -61,7 +62,7 @@ class SongListItem extends StatelessWidget {
               height: 10,
             ),
             Text(
-              '${item.name}',
+              '${item.name ?? ''}',
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(color: Colors.white70, fontSize: 14),
