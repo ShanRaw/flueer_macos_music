@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:music/pages/home/state.dart';
 import 'package:music/pages/index.dart';
 import 'package:music/state/menu.dart';
 import 'package:music/state/music.dart';
@@ -22,8 +23,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<MenuState>(create: (_) => MenuState()),
+        //音乐全局控制器
         ChangeNotifierProvider<MusicState>(create: (_) => MusicState()),
+        //左侧菜单
+        ChangeNotifierProvider<MenuState>(create: (_) => MenuState()),
+        //首页
+        ChangeNotifierProvider<HomeState>(create: (_) => HomeState()),
       ],
       child: MaterialApp(
         title: 'SR.Music',

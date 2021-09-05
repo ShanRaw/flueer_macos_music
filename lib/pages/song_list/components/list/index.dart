@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:music/config/apis.dart';
-import 'package:music/models/automation/personalized_response_entity.dart';
 import 'package:music/models/automation/song_list_res_entity.dart';
 import 'package:music/models/automation/tag_response_entity.dart';
-import 'package:music/pages/home/components/recommend_song_list/song_list_item.dart';
+import 'package:music/models/music_item.dart';
+import 'package:music/components/song_list_item.dart';
 import 'package:music/utils/http.dart';
 
 class SongListBody extends StatefulWidget {
@@ -15,7 +15,8 @@ class SongListBody extends StatefulWidget {
   _SongListBodyState createState() => _SongListBodyState();
 }
 
-class _SongListBodyState extends State<SongListBody> with AutomaticKeepAliveClientMixin{
+class _SongListBodyState extends State<SongListBody>
+    with AutomaticKeepAliveClientMixin {
   List<SongListResPlaylists>? list = [];
   GlobalKey<RefreshIndicatorState> refresh = GlobalKey<RefreshIndicatorState>();
 
@@ -45,6 +46,10 @@ class _SongListBodyState extends State<SongListBody> with AutomaticKeepAliveClie
   }
 
   @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
         key: refresh,
@@ -55,8 +60,11 @@ class _SongListBodyState extends State<SongListBody> with AutomaticKeepAliveClie
               spacing: 18,
               children: list
                       ?.map((e) => SongListItem(
-                            item: PersonalizedResponseResult()
-                                .fromJson(e.toJson()),
+                            item: MusicItem(
+                                name: e.name,
+                                image: e.coverImgUrl,
+                                playCount: e.playCount,
+                                id: e.id),
                           ))
                       .toList() ??
                   [],
@@ -65,8 +73,4 @@ class _SongListBodyState extends State<SongListBody> with AutomaticKeepAliveClie
         ),
         onRefresh: onRefresh);
   }
-
-  @override
-  // TODO: implement wantKeepAlive
-  bool get wantKeepAlive => true;
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:music/models/automation/personalized_response_entity.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:music/models/music_item.dart';
 import 'package:music/utils/child_navigator.dart';
 import 'package:music/utils/image_deault.dart';
 
 class SongListItem extends StatelessWidget {
-  final PersonalizedResponseResult item;
+  final MusicItem item;
 
   SongListItem({required this.item});
 
@@ -27,7 +27,7 @@ class SongListItem extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(5),
                   child: CachedNetworkImage(
-                    imageUrl: item.picUrl ?? '',
+                    imageUrl: item.image ?? '',
                     width: 195,
                     height: 195,
                     fit: BoxFit.fill,

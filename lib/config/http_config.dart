@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 abstract class HttpConfig {
-  static String? baseUrl = 'https://music.wbdear.com'; //app接口地址
+  static String? baseUrl = 'https://music-api.wbdear.com/'; //app接口地址
   static int connectTimeout = 20000; //接口链接服务器的超时时间
   static int receiveTimeout = 20000; //接收数据的最长时限
   /// [responseType] 表示期望以那种格式(方式)接受响应数据。
