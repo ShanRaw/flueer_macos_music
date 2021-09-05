@@ -12,6 +12,7 @@ class FineSongHead extends StatelessWidget {
     if (item == null) return Container();
     return Container(
       height: 150,
+      margin: EdgeInsets.only(top: 30),
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
           color: Color(0xff485A65),

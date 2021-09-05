@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:music/components/song_list_item.dart';
+import 'package:music/models/music_item.dart';
 import 'package:music/pages/home/state.dart';
-import 'components/recommend_song_list.dart';
+import 'components/list_title.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -24,15 +26,36 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final list = context.watch<HomeState>().recommendationList;
     return RefreshIndicator(
         key: context.read<HomeState>().refresh,
-        child: ListView(
-          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-          physics: AlwaysScrollableScrollPhysics(),
-          children: [
-            //推荐歌单
-            RecommendSongList(),
-          ],
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
+          child: CustomScrollView(
+            physics: AlwaysScrollableScrollPhysics(),
+            slivers: [
+              SliverToBoxAdapter(
+                child: ListTitle(
+                  title: '推荐歌单',
+                ),
+              ),
+              SliverGrid.count(
+                crossAxisCount: 5,
+                mainAxisSpacing: 18,
+                crossAxisSpacing: 18,
+                childAspectRatio: 195 / 250,
+                children: list
+                    .map((e) => SongListItem(
+                          item: MusicItem(
+                              id: e.id,
+                              name: e.name,
+                              playCount: e.playCount,
+                              image: e.picUrl),
+                        ))
+                    .toList(),
+              )
+            ],
+          ),
         ),
         onRefresh: context.read<HomeState>().onRefresh);
   }

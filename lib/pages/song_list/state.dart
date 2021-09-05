@@ -14,6 +14,16 @@ class SongListSate extends ChangeNotifier {
 
   int get active => _active;
 
+  //当前页
+  int _current = 1;
+
+  int get current => _current;
+
+  //总页数
+  int _total = 1;
+
+  int get total => _total;
+
   //精品歌单数据
   FineSongListResponsePlaylists? _fine;
 
@@ -47,31 +57,40 @@ class SongListSate extends ChangeNotifier {
   }
 
   //获取精品歌单的数据
-  void getFineSong({TagResponseTags? item}) async {
+  void getFineSong() async {
     final res = FineSongListResponseEntity().fromJson(await Http.api(
         api: Apis.topPlaylistHighquality,
-        params: {'cat': item?.name ?? '', 'limit': 1}));
+        params: {'cat': _tags[_active].name ?? '', 'limit': 1}));
     _fine = res.playlists?.length == 0 ? null : res.playlists?[0];
     notifyListeners();
   }
 
   //获取列表数据
-  getList({required TagResponseTags item}) async {
-    final res = SongListResEntity()
+  getList() async {
+    final SongListResEntity res = SongListResEntity()
         .fromJson(await Http.api(api: Apis.topPlaylist, params: {
-      'cat': item.name,
+      'cat': _tags[_active].name,
       'order': 'hot',
       'limit': _size,
+      'offset': (_current - 1) * _size,
     }));
-    listMap.addAll({item.id ?? 0: res.playlists ?? []});
+    listMap.addAll({_tags[_active].id ?? 0: res.playlists ?? []});
+    _total = res.total == null ? 1 : (res.total! / _size).ceil();
     notifyListeners();
   }
 
   //选项卡改变
   void changeTab(int index) {
     _active = index;
+    _current = 1;
+    _total = 1;
+    getFineSong();
+    getList();
+  }
+
+  void changePage(int page) {
+    _current = page;
     notifyListeners();
-    getFineSong(item: _tags[index]);
-    getList(item: _tags[index]);
+    getList();
   }
 }
