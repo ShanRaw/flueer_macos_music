@@ -9,6 +9,8 @@ import 'package:music/models/automation/personalized_response_entity.dart';
 import 'package:music/generated/json/personalized_response_entity_helper.dart';
 import 'package:music/models/automation/tag_response_entity.dart';
 import 'package:music/generated/json/tag_response_entity_helper.dart';
+import 'package:music/models/automation/fine_list_response_entity.dart';
+import 'package:music/generated/json/fine_list_response_entity_helper.dart';
 import 'package:music/models/automation/fine_song_list_response_entity.dart';
 import 'package:music/generated/json/fine_song_list_response_entity_helper.dart';
 import 'package:music/models/automation/playlist_detail_response_entity.dart';
@@ -45,6 +47,16 @@ class JsonConvert<T> {
 				return tagResponseTagsFromJson(data as TagResponseTags, json) as T;
 			case TagResponseTagsPlaylistTag:
 				return tagResponseTagsPlaylistTagFromJson(data as TagResponseTagsPlaylistTag, json) as T;
+			case FineListResponseEntity:
+				return fineListResponseEntityFromJson(data as FineListResponseEntity, json) as T;
+			case FineListResponsePlaylists:
+				return fineListResponsePlaylistsFromJson(data as FineListResponsePlaylists, json) as T;
+			case FineListResponsePlaylistsCreator:
+				return fineListResponsePlaylistsCreatorFromJson(data as FineListResponsePlaylistsCreator, json) as T;
+			case FineListResponsePlaylistsCreatorAvatarDetail:
+				return fineListResponsePlaylistsCreatorAvatarDetailFromJson(data as FineListResponsePlaylistsCreatorAvatarDetail, json) as T;
+			case FineListResponsePlaylistsSubscribers:
+				return fineListResponsePlaylistsSubscribersFromJson(data as FineListResponsePlaylistsSubscribers, json) as T;
 			case FineSongListResponseEntity:
 				return fineSongListResponseEntityFromJson(data as FineSongListResponseEntity, json) as T;
 			case FineSongListResponsePlaylists:
@@ -110,6 +122,16 @@ class JsonConvert<T> {
 				return tagResponseTagsToJson(data as TagResponseTags);
 			case TagResponseTagsPlaylistTag:
 				return tagResponseTagsPlaylistTagToJson(data as TagResponseTagsPlaylistTag);
+			case FineListResponseEntity:
+				return fineListResponseEntityToJson(data as FineListResponseEntity);
+			case FineListResponsePlaylists:
+				return fineListResponsePlaylistsToJson(data as FineListResponsePlaylists);
+			case FineListResponsePlaylistsCreator:
+				return fineListResponsePlaylistsCreatorToJson(data as FineListResponsePlaylistsCreator);
+			case FineListResponsePlaylistsCreatorAvatarDetail:
+				return fineListResponsePlaylistsCreatorAvatarDetailToJson(data as FineListResponsePlaylistsCreatorAvatarDetail);
+			case FineListResponsePlaylistsSubscribers:
+				return fineListResponsePlaylistsSubscribersToJson(data as FineListResponsePlaylistsSubscribers);
 			case FineSongListResponseEntity:
 				return fineSongListResponseEntityToJson(data as FineSongListResponseEntity);
 			case FineSongListResponsePlaylists:
@@ -185,6 +207,21 @@ class JsonConvert<T> {
 		}
 		if(type == (TagResponseTagsPlaylistTag).toString()){
 			return TagResponseTagsPlaylistTag().fromJson(json);
+		}
+		if(type == (FineListResponseEntity).toString()){
+			return FineListResponseEntity().fromJson(json);
+		}
+		if(type == (FineListResponsePlaylists).toString()){
+			return FineListResponsePlaylists().fromJson(json);
+		}
+		if(type == (FineListResponsePlaylistsCreator).toString()){
+			return FineListResponsePlaylistsCreator().fromJson(json);
+		}
+		if(type == (FineListResponsePlaylistsCreatorAvatarDetail).toString()){
+			return FineListResponsePlaylistsCreatorAvatarDetail().fromJson(json);
+		}
+		if(type == (FineListResponsePlaylistsSubscribers).toString()){
+			return FineListResponsePlaylistsSubscribers().fromJson(json);
 		}
 		if(type == (FineSongListResponseEntity).toString()){
 			return FineSongListResponseEntity().fromJson(json);
@@ -281,6 +318,21 @@ class JsonConvert<T> {
 		}
 		if(<TagResponseTagsPlaylistTag>[] is M){
 			return data.map<TagResponseTagsPlaylistTag>((e) => TagResponseTagsPlaylistTag().fromJson(e)).toList() as M;
+		}
+		if(<FineListResponseEntity>[] is M){
+			return data.map<FineListResponseEntity>((e) => FineListResponseEntity().fromJson(e)).toList() as M;
+		}
+		if(<FineListResponsePlaylists>[] is M){
+			return data.map<FineListResponsePlaylists>((e) => FineListResponsePlaylists().fromJson(e)).toList() as M;
+		}
+		if(<FineListResponsePlaylistsCreator>[] is M){
+			return data.map<FineListResponsePlaylistsCreator>((e) => FineListResponsePlaylistsCreator().fromJson(e)).toList() as M;
+		}
+		if(<FineListResponsePlaylistsCreatorAvatarDetail>[] is M){
+			return data.map<FineListResponsePlaylistsCreatorAvatarDetail>((e) => FineListResponsePlaylistsCreatorAvatarDetail().fromJson(e)).toList() as M;
+		}
+		if(<FineListResponsePlaylistsSubscribers>[] is M){
+			return data.map<FineListResponsePlaylistsSubscribers>((e) => FineListResponsePlaylistsSubscribers().fromJson(e)).toList() as M;
 		}
 		if(<FineSongListResponseEntity>[] is M){
 			return data.map<FineSongListResponseEntity>((e) => FineSongListResponseEntity().fromJson(e)).toList() as M;

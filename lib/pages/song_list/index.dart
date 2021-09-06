@@ -40,6 +40,11 @@ class _SongListPageState extends State<SongListPage> {
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
         slivers: [
           SliverToBoxAdapter(
+            child: SizedBox(
+              height: 30,
+            ),
+          ),
+          SliverToBoxAdapter(
             child: FineSongHead(),
           ),
           // tab选项卡

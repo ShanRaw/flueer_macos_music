@@ -61,7 +61,9 @@ class SongListSate extends ChangeNotifier {
     final res = FineSongListResponseEntity().fromJson(await Http.api(
         api: Apis.topPlaylistHighquality,
         params: {'cat': _tags[_active].name ?? '', 'limit': 1}));
-    _fine = res.playlists?.length == 0 ? null : res.playlists?[0];
+    if (res.playlists?.length != 0) {
+      _fine = res.playlists?[0];
+    }
     notifyListeners();
   }
 
