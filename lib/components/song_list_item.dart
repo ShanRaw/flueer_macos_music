@@ -21,13 +21,16 @@ class SongListItem extends StatelessWidget {
         children: [
           Stack(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: CachedNetworkImage(
-                  imageUrl: item.image ?? '',
-                  fit: BoxFit.fill,
-                  placeholder: (context, url) => ImageDefault.placeholder,
-                  errorWidget: (_, __, ___) => ImageDefault.defaultImageWhite,
+              AspectRatio(
+                aspectRatio: 1,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(5),
+                  child: CachedNetworkImage(
+                    imageUrl: item.image ?? '',
+                    fit: BoxFit.fill,
+                    placeholder: (context, url) => ImageDefault.placeholder,
+                    errorWidget: (_, __, ___) => ImageDefault.defaultImageWhite,
+                  ),
                 ),
               ),
               Positioned(

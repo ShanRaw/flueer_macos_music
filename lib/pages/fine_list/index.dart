@@ -98,7 +98,8 @@ class _FineListPageState extends State<FineListPage> with FineListModule {
                                   style: TextStyle(
                                       color: Color(0xff515150),
                                       fontSize: 10,
-                                      fontWeight: FontWeight.normal),
+                                      fontWeight: FontWeight.normal
+                                  ),
                                 ))
                               ],
                             )

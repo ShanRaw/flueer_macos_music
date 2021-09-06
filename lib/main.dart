@@ -36,6 +36,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'SR.Music',
         debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            textTheme:
+                TextTheme(button: TextStyle(fontWeight: FontWeight.normal))),
         key: MainNavigator.key,
         home: MainPage(),
       ),

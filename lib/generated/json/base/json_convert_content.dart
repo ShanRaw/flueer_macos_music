@@ -7,10 +7,14 @@ import 'package:music/models/automation/song_list_res_entity.dart';
 import 'package:music/generated/json/song_list_res_entity_helper.dart';
 import 'package:music/models/automation/personalized_response_entity.dart';
 import 'package:music/generated/json/personalized_response_entity_helper.dart';
+import 'package:music/models/automation/personalized_newsong_entity.dart';
+import 'package:music/generated/json/personalized_newsong_entity_helper.dart';
 import 'package:music/models/automation/tag_response_entity.dart';
 import 'package:music/generated/json/tag_response_entity_helper.dart';
 import 'package:music/models/automation/fine_list_response_entity.dart';
 import 'package:music/generated/json/fine_list_response_entity_helper.dart';
+import 'package:music/models/automation/personalized_privatecontent_entity.dart';
+import 'package:music/generated/json/personalized_privatecontent_entity_helper.dart';
 import 'package:music/models/automation/fine_song_list_response_entity.dart';
 import 'package:music/generated/json/fine_song_list_response_entity_helper.dart';
 import 'package:music/models/automation/playlist_detail_response_entity.dart';
@@ -41,6 +45,34 @@ class JsonConvert<T> {
 				return personalizedResponseEntityFromJson(data as PersonalizedResponseEntity, json) as T;
 			case PersonalizedResponseResult:
 				return personalizedResponseResultFromJson(data as PersonalizedResponseResult, json) as T;
+			case PersonalizedNewsongEntity:
+				return personalizedNewsongEntityFromJson(data as PersonalizedNewsongEntity, json) as T;
+			case PersonalizedNewsongResult:
+				return personalizedNewsongResultFromJson(data as PersonalizedNewsongResult, json) as T;
+			case PersonalizedNewsongResultSong:
+				return personalizedNewsongResultSongFromJson(data as PersonalizedNewsongResultSong, json) as T;
+			case PersonalizedNewsongResultSongArtists:
+				return personalizedNewsongResultSongArtistsFromJson(data as PersonalizedNewsongResultSongArtists, json) as T;
+			case PersonalizedNewsongResultSongAlbum:
+				return personalizedNewsongResultSongAlbumFromJson(data as PersonalizedNewsongResultSongAlbum, json) as T;
+			case PersonalizedNewsongResultSongAlbumArtist:
+				return personalizedNewsongResultSongAlbumArtistFromJson(data as PersonalizedNewsongResultSongAlbumArtist, json) as T;
+			case PersonalizedNewsongResultSongAlbumArtists:
+				return personalizedNewsongResultSongAlbumArtistsFromJson(data as PersonalizedNewsongResultSongAlbumArtists, json) as T;
+			case PersonalizedNewsongResultSongBMusic:
+				return personalizedNewsongResultSongBMusicFromJson(data as PersonalizedNewsongResultSongBMusic, json) as T;
+			case PersonalizedNewsongResultSongHMusic:
+				return personalizedNewsongResultSongHMusicFromJson(data as PersonalizedNewsongResultSongHMusic, json) as T;
+			case PersonalizedNewsongResultSongMMusic:
+				return personalizedNewsongResultSongMMusicFromJson(data as PersonalizedNewsongResultSongMMusic, json) as T;
+			case PersonalizedNewsongResultSongLMusic:
+				return personalizedNewsongResultSongLMusicFromJson(data as PersonalizedNewsongResultSongLMusic, json) as T;
+			case PersonalizedNewsongResultSongPrivilege:
+				return personalizedNewsongResultSongPrivilegeFromJson(data as PersonalizedNewsongResultSongPrivilege, json) as T;
+			case PersonalizedNewsongResultSongPrivilegeFreeTrialPrivilege:
+				return personalizedNewsongResultSongPrivilegeFreeTrialPrivilegeFromJson(data as PersonalizedNewsongResultSongPrivilegeFreeTrialPrivilege, json) as T;
+			case PersonalizedNewsongResultSongPrivilegeChargeInfoList:
+				return personalizedNewsongResultSongPrivilegeChargeInfoListFromJson(data as PersonalizedNewsongResultSongPrivilegeChargeInfoList, json) as T;
 			case TagResponseEntity:
 				return tagResponseEntityFromJson(data as TagResponseEntity, json) as T;
 			case TagResponseTags:
@@ -57,6 +89,10 @@ class JsonConvert<T> {
 				return fineListResponsePlaylistsCreatorAvatarDetailFromJson(data as FineListResponsePlaylistsCreatorAvatarDetail, json) as T;
 			case FineListResponsePlaylistsSubscribers:
 				return fineListResponsePlaylistsSubscribersFromJson(data as FineListResponsePlaylistsSubscribers, json) as T;
+			case PersonalizedPrivatecontentEntity:
+				return personalizedPrivatecontentEntityFromJson(data as PersonalizedPrivatecontentEntity, json) as T;
+			case PersonalizedPrivatecontentResult:
+				return personalizedPrivatecontentResultFromJson(data as PersonalizedPrivatecontentResult, json) as T;
 			case FineSongListResponseEntity:
 				return fineSongListResponseEntityFromJson(data as FineSongListResponseEntity, json) as T;
 			case FineSongListResponsePlaylists:
@@ -116,6 +152,34 @@ class JsonConvert<T> {
 				return personalizedResponseEntityToJson(data as PersonalizedResponseEntity);
 			case PersonalizedResponseResult:
 				return personalizedResponseResultToJson(data as PersonalizedResponseResult);
+			case PersonalizedNewsongEntity:
+				return personalizedNewsongEntityToJson(data as PersonalizedNewsongEntity);
+			case PersonalizedNewsongResult:
+				return personalizedNewsongResultToJson(data as PersonalizedNewsongResult);
+			case PersonalizedNewsongResultSong:
+				return personalizedNewsongResultSongToJson(data as PersonalizedNewsongResultSong);
+			case PersonalizedNewsongResultSongArtists:
+				return personalizedNewsongResultSongArtistsToJson(data as PersonalizedNewsongResultSongArtists);
+			case PersonalizedNewsongResultSongAlbum:
+				return personalizedNewsongResultSongAlbumToJson(data as PersonalizedNewsongResultSongAlbum);
+			case PersonalizedNewsongResultSongAlbumArtist:
+				return personalizedNewsongResultSongAlbumArtistToJson(data as PersonalizedNewsongResultSongAlbumArtist);
+			case PersonalizedNewsongResultSongAlbumArtists:
+				return personalizedNewsongResultSongAlbumArtistsToJson(data as PersonalizedNewsongResultSongAlbumArtists);
+			case PersonalizedNewsongResultSongBMusic:
+				return personalizedNewsongResultSongBMusicToJson(data as PersonalizedNewsongResultSongBMusic);
+			case PersonalizedNewsongResultSongHMusic:
+				return personalizedNewsongResultSongHMusicToJson(data as PersonalizedNewsongResultSongHMusic);
+			case PersonalizedNewsongResultSongMMusic:
+				return personalizedNewsongResultSongMMusicToJson(data as PersonalizedNewsongResultSongMMusic);
+			case PersonalizedNewsongResultSongLMusic:
+				return personalizedNewsongResultSongLMusicToJson(data as PersonalizedNewsongResultSongLMusic);
+			case PersonalizedNewsongResultSongPrivilege:
+				return personalizedNewsongResultSongPrivilegeToJson(data as PersonalizedNewsongResultSongPrivilege);
+			case PersonalizedNewsongResultSongPrivilegeFreeTrialPrivilege:
+				return personalizedNewsongResultSongPrivilegeFreeTrialPrivilegeToJson(data as PersonalizedNewsongResultSongPrivilegeFreeTrialPrivilege);
+			case PersonalizedNewsongResultSongPrivilegeChargeInfoList:
+				return personalizedNewsongResultSongPrivilegeChargeInfoListToJson(data as PersonalizedNewsongResultSongPrivilegeChargeInfoList);
 			case TagResponseEntity:
 				return tagResponseEntityToJson(data as TagResponseEntity);
 			case TagResponseTags:
@@ -132,6 +196,10 @@ class JsonConvert<T> {
 				return fineListResponsePlaylistsCreatorAvatarDetailToJson(data as FineListResponsePlaylistsCreatorAvatarDetail);
 			case FineListResponsePlaylistsSubscribers:
 				return fineListResponsePlaylistsSubscribersToJson(data as FineListResponsePlaylistsSubscribers);
+			case PersonalizedPrivatecontentEntity:
+				return personalizedPrivatecontentEntityToJson(data as PersonalizedPrivatecontentEntity);
+			case PersonalizedPrivatecontentResult:
+				return personalizedPrivatecontentResultToJson(data as PersonalizedPrivatecontentResult);
 			case FineSongListResponseEntity:
 				return fineSongListResponseEntityToJson(data as FineSongListResponseEntity);
 			case FineSongListResponsePlaylists:
@@ -199,6 +267,48 @@ class JsonConvert<T> {
 		if(type == (PersonalizedResponseResult).toString()){
 			return PersonalizedResponseResult().fromJson(json);
 		}
+		if(type == (PersonalizedNewsongEntity).toString()){
+			return PersonalizedNewsongEntity().fromJson(json);
+		}
+		if(type == (PersonalizedNewsongResult).toString()){
+			return PersonalizedNewsongResult().fromJson(json);
+		}
+		if(type == (PersonalizedNewsongResultSong).toString()){
+			return PersonalizedNewsongResultSong().fromJson(json);
+		}
+		if(type == (PersonalizedNewsongResultSongArtists).toString()){
+			return PersonalizedNewsongResultSongArtists().fromJson(json);
+		}
+		if(type == (PersonalizedNewsongResultSongAlbum).toString()){
+			return PersonalizedNewsongResultSongAlbum().fromJson(json);
+		}
+		if(type == (PersonalizedNewsongResultSongAlbumArtist).toString()){
+			return PersonalizedNewsongResultSongAlbumArtist().fromJson(json);
+		}
+		if(type == (PersonalizedNewsongResultSongAlbumArtists).toString()){
+			return PersonalizedNewsongResultSongAlbumArtists().fromJson(json);
+		}
+		if(type == (PersonalizedNewsongResultSongBMusic).toString()){
+			return PersonalizedNewsongResultSongBMusic().fromJson(json);
+		}
+		if(type == (PersonalizedNewsongResultSongHMusic).toString()){
+			return PersonalizedNewsongResultSongHMusic().fromJson(json);
+		}
+		if(type == (PersonalizedNewsongResultSongMMusic).toString()){
+			return PersonalizedNewsongResultSongMMusic().fromJson(json);
+		}
+		if(type == (PersonalizedNewsongResultSongLMusic).toString()){
+			return PersonalizedNewsongResultSongLMusic().fromJson(json);
+		}
+		if(type == (PersonalizedNewsongResultSongPrivilege).toString()){
+			return PersonalizedNewsongResultSongPrivilege().fromJson(json);
+		}
+		if(type == (PersonalizedNewsongResultSongPrivilegeFreeTrialPrivilege).toString()){
+			return PersonalizedNewsongResultSongPrivilegeFreeTrialPrivilege().fromJson(json);
+		}
+		if(type == (PersonalizedNewsongResultSongPrivilegeChargeInfoList).toString()){
+			return PersonalizedNewsongResultSongPrivilegeChargeInfoList().fromJson(json);
+		}
 		if(type == (TagResponseEntity).toString()){
 			return TagResponseEntity().fromJson(json);
 		}
@@ -222,6 +332,12 @@ class JsonConvert<T> {
 		}
 		if(type == (FineListResponsePlaylistsSubscribers).toString()){
 			return FineListResponsePlaylistsSubscribers().fromJson(json);
+		}
+		if(type == (PersonalizedPrivatecontentEntity).toString()){
+			return PersonalizedPrivatecontentEntity().fromJson(json);
+		}
+		if(type == (PersonalizedPrivatecontentResult).toString()){
+			return PersonalizedPrivatecontentResult().fromJson(json);
 		}
 		if(type == (FineSongListResponseEntity).toString()){
 			return FineSongListResponseEntity().fromJson(json);
@@ -310,6 +426,48 @@ class JsonConvert<T> {
 		if(<PersonalizedResponseResult>[] is M){
 			return data.map<PersonalizedResponseResult>((e) => PersonalizedResponseResult().fromJson(e)).toList() as M;
 		}
+		if(<PersonalizedNewsongEntity>[] is M){
+			return data.map<PersonalizedNewsongEntity>((e) => PersonalizedNewsongEntity().fromJson(e)).toList() as M;
+		}
+		if(<PersonalizedNewsongResult>[] is M){
+			return data.map<PersonalizedNewsongResult>((e) => PersonalizedNewsongResult().fromJson(e)).toList() as M;
+		}
+		if(<PersonalizedNewsongResultSong>[] is M){
+			return data.map<PersonalizedNewsongResultSong>((e) => PersonalizedNewsongResultSong().fromJson(e)).toList() as M;
+		}
+		if(<PersonalizedNewsongResultSongArtists>[] is M){
+			return data.map<PersonalizedNewsongResultSongArtists>((e) => PersonalizedNewsongResultSongArtists().fromJson(e)).toList() as M;
+		}
+		if(<PersonalizedNewsongResultSongAlbum>[] is M){
+			return data.map<PersonalizedNewsongResultSongAlbum>((e) => PersonalizedNewsongResultSongAlbum().fromJson(e)).toList() as M;
+		}
+		if(<PersonalizedNewsongResultSongAlbumArtist>[] is M){
+			return data.map<PersonalizedNewsongResultSongAlbumArtist>((e) => PersonalizedNewsongResultSongAlbumArtist().fromJson(e)).toList() as M;
+		}
+		if(<PersonalizedNewsongResultSongAlbumArtists>[] is M){
+			return data.map<PersonalizedNewsongResultSongAlbumArtists>((e) => PersonalizedNewsongResultSongAlbumArtists().fromJson(e)).toList() as M;
+		}
+		if(<PersonalizedNewsongResultSongBMusic>[] is M){
+			return data.map<PersonalizedNewsongResultSongBMusic>((e) => PersonalizedNewsongResultSongBMusic().fromJson(e)).toList() as M;
+		}
+		if(<PersonalizedNewsongResultSongHMusic>[] is M){
+			return data.map<PersonalizedNewsongResultSongHMusic>((e) => PersonalizedNewsongResultSongHMusic().fromJson(e)).toList() as M;
+		}
+		if(<PersonalizedNewsongResultSongMMusic>[] is M){
+			return data.map<PersonalizedNewsongResultSongMMusic>((e) => PersonalizedNewsongResultSongMMusic().fromJson(e)).toList() as M;
+		}
+		if(<PersonalizedNewsongResultSongLMusic>[] is M){
+			return data.map<PersonalizedNewsongResultSongLMusic>((e) => PersonalizedNewsongResultSongLMusic().fromJson(e)).toList() as M;
+		}
+		if(<PersonalizedNewsongResultSongPrivilege>[] is M){
+			return data.map<PersonalizedNewsongResultSongPrivilege>((e) => PersonalizedNewsongResultSongPrivilege().fromJson(e)).toList() as M;
+		}
+		if(<PersonalizedNewsongResultSongPrivilegeFreeTrialPrivilege>[] is M){
+			return data.map<PersonalizedNewsongResultSongPrivilegeFreeTrialPrivilege>((e) => PersonalizedNewsongResultSongPrivilegeFreeTrialPrivilege().fromJson(e)).toList() as M;
+		}
+		if(<PersonalizedNewsongResultSongPrivilegeChargeInfoList>[] is M){
+			return data.map<PersonalizedNewsongResultSongPrivilegeChargeInfoList>((e) => PersonalizedNewsongResultSongPrivilegeChargeInfoList().fromJson(e)).toList() as M;
+		}
 		if(<TagResponseEntity>[] is M){
 			return data.map<TagResponseEntity>((e) => TagResponseEntity().fromJson(e)).toList() as M;
 		}
@@ -333,6 +491,12 @@ class JsonConvert<T> {
 		}
 		if(<FineListResponsePlaylistsSubscribers>[] is M){
 			return data.map<FineListResponsePlaylistsSubscribers>((e) => FineListResponsePlaylistsSubscribers().fromJson(e)).toList() as M;
+		}
+		if(<PersonalizedPrivatecontentEntity>[] is M){
+			return data.map<PersonalizedPrivatecontentEntity>((e) => PersonalizedPrivatecontentEntity().fromJson(e)).toList() as M;
+		}
+		if(<PersonalizedPrivatecontentResult>[] is M){
+			return data.map<PersonalizedPrivatecontentResult>((e) => PersonalizedPrivatecontentResult().fromJson(e)).toList() as M;
 		}
 		if(<FineSongListResponseEntity>[] is M){
 			return data.map<FineSongListResponseEntity>((e) => FineSongListResponseEntity().fromJson(e)).toList() as M;
