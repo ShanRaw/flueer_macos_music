@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:music/config/apis.dart';
 import 'package:music/models/automation/fine_song_list_response_entity.dart';
 import 'package:music/models/automation/song_list_res_entity.dart';
@@ -6,6 +7,9 @@ import 'package:music/models/automation/tag_response_entity.dart';
 import 'package:music/utils/http.dart';
 
 class SongListSate extends ChangeNotifier {
+  //scroll 控制器
+  ScrollController scrollController = ScrollController();
+
   //每次请求加载的数量
   static int _size = 50;
 
@@ -41,10 +45,6 @@ class SongListSate extends ChangeNotifier {
 
   Map<int, List<SongListResPlaylists>> get listMap => _listMap;
 
-  //模拟列表的数据
-  List<SongListResPlaylists> mockList = List<SongListResPlaylists>.filled(
-      _size, SongListResPlaylists().fromJson({}));
-
   //获取标签数据
   void getTags() async {
     final res =
@@ -57,7 +57,7 @@ class SongListSate extends ChangeNotifier {
   }
 
   //获取精品歌单的数据
-  void getFineSong() async {
+  Future getFineSong() async {
     final res = FineSongListResponseEntity().fromJson(await Http.api(
         api: Apis.topPlaylistHighquality,
         params: {'cat': _tags[_active].name ?? '', 'limit': 1}));
@@ -66,7 +66,7 @@ class SongListSate extends ChangeNotifier {
   }
 
   //获取列表数据
-  getList() async {
+  Future getList() async {
     final SongListResEntity res = SongListResEntity()
         .fromJson(await Http.api(api: Apis.topPlaylist, params: {
       'cat': _tags[_active].name,
@@ -80,17 +80,24 @@ class SongListSate extends ChangeNotifier {
   }
 
   //选项卡改变
-  void changeTab(int index) {
+  void changeTab(int index) async {
     _active = index;
     _current = 1;
     _total = 1;
-    getFineSong();
-    getList();
+    Future.wait([getFineSong(), getList()]);
+    scrollTop();
   }
 
-  void changePage(int page) {
+  void changePage(int page) async {
     _current = page;
     notifyListeners();
-    getList();
+    await getList();
+    scrollTop();
+  }
+
+  void scrollTop() {
+    final double top = 180;
+    print(scrollController.offset);
+    scrollController.jumpTo(scrollController.offset >= top ? top : 0);
   }
 }
