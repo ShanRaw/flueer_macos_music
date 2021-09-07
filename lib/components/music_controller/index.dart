@@ -18,8 +18,8 @@ class MusicController extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           MusicControllerInfo(),
-          MusicControllerSlider(),
           MusicControllerBtn(),
+          MusicControllerSlider(),
         ],
       ),
     );

@@ -99,7 +99,6 @@ class SongListSate extends ChangeNotifier {
 
   void scrollTop() {
     final double top = 180;
-    print(scrollController.offset);
     scrollController.jumpTo(scrollController.offset >= top ? top : 0);
   }
 }

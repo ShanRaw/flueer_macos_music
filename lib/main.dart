@@ -1,11 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:music/pages/home/state.dart';
-import 'package:music/pages/index.dart';
+import 'package:music/pages/root.dart';
 import 'package:music/pages/song_list/state.dart';
 import 'package:music/state/menu.dart';
 import 'package:music/state/music.dart';
-import 'package:music/utils/main_navigator.dart';
 import 'package:provider/provider.dart';
 import 'package:window_size/window_size.dart';
 
@@ -15,7 +14,6 @@ void main() async {
     setWindowMinSize(Size(1300, 800));
     setWindowMaxSize(Size(1300, 800));
   }
-
   runApp(MyApp());
 }
 
@@ -39,8 +37,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             textTheme:
                 TextTheme(button: TextStyle(fontWeight: FontWeight.normal))),
-        key: MainNavigator.key,
-        home: MainPage(),
+        // routes: routes,
+        home: RootPage(),
       ),
     );
   }

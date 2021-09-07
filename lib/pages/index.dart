@@ -23,27 +23,22 @@ class MainPage extends StatelessWidget {
             children: [
               CustomSidebar(),
               Expanded(
-                  child: Column(
-                children: [
-                  CustomAppBar(),
-                  Expanded(
-                      child: Navigator(
-                    key: ChildNavigator.key,
-                    observers: [ChildNavigator.routeObserver],
-                    onGenerateRoute: (RouteSettings setting) {
-                      WidgetBuilder builder = routes[setting.name] ??
-                          (_) => CustomRouteObserver(child: HomePage());
-                      return PageRouteBuilder(
-                          transitionDuration: Duration.zero,
-                          reverseTransitionDuration: Duration.zero,
-                          pageBuilder: (_, __, ___) => CustomRouteObserver(
-                                child: builder(_),
-                              ),
-                          // transitionDuration: Duration.zero,
-                          settings: setting);
-                    },
-                  ))
-                ],
+                  child: Navigator(
+                key: ChildNavigator.key,
+                // initialRoute: '/home',
+                observers: [ChildNavigator.routeObserver],
+                onGenerateRoute: (RouteSettings setting) {
+                  WidgetBuilder builder = routes[setting.name] ??
+                      (_) => CustomRouteObserver(child: HomePage());
+                  return PageRouteBuilder(
+                      transitionDuration: Duration.zero,
+                      reverseTransitionDuration: Duration.zero,
+                      pageBuilder: (_, __, ___) => CustomRouteObserver(
+                            child: builder(_),
+                          ),
+                      // transitionDuration: Duration.zero,
+                      settings: setting);
+                },
               ))
             ],
           ),

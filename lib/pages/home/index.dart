@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
               RecommendedSongList(),
               SliverToBoxAdapter(
                 child: SizedBox(
-                  height: 15,
+                  height: 30,
                 ),
               ),
               SliverToBoxAdapter(
@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
               ExclusiveMemory(),
               SliverToBoxAdapter(
                 child: SizedBox(
-                  height: 15,
+                  height: 30,
                 ),
               ),
               SliverToBoxAdapter(
@@ -79,6 +79,11 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               NewSongList(),
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 30,
+                ),
+              ),
             ],
           ),
         ),

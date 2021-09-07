@@ -26,13 +26,12 @@ class _SongListPageState extends State<SongListPage> {
 
   @override
   Widget build(BuildContext context) {
-    final scrollController = context.watch<SongListSate>().scrollController;
+    final scrollController = context.read<SongListSate>().scrollController;
     final tags = context.watch<SongListSate>().tags;
     final index = context.watch<SongListSate>().active;
-    final nowList = context.watch<SongListSate>().listMap[tags[index].id];
+    final list = context.watch<SongListSate>().listMap[tags[index].id] ?? [];
     final current = context.watch<SongListSate>().current;
     final total = context.watch<SongListSate>().total;
-    final list = nowList ?? [];
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 30),
       child: CustomScrollView(
