@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:music/components/custom_app_bar.dart';
 import 'package:music/components/custom_sidebar/index.dart';
 import 'package:music/components/music_controller/index.dart';
 import 'package:music/components/play_list_modal.dart';

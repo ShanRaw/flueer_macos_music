@@ -92,7 +92,6 @@ class SongListSate extends ChangeNotifier {
 
   void changePage(int page) async {
     _current = page;
-    notifyListeners();
     await getList();
     scrollTop();
   }

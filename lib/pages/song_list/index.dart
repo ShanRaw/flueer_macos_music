@@ -36,7 +36,6 @@ class _SongListPageState extends State<SongListPage> {
       padding: EdgeInsets.symmetric(horizontal: 30),
       child: CustomScrollView(
         controller: scrollController,
-        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
         slivers: [
           SliverToBoxAdapter(
             child: SizedBox(

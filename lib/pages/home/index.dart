@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:music/pages/home/state.dart';
 import 'components/exclusive_memory.dart';
@@ -14,13 +13,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  GlobalKey<RefreshIndicatorState> refresh = GlobalKey<RefreshIndicatorState>();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
       if (context.read<HomeState>().recommendationList.length == 0) {
-        context.read<HomeState>().refresh.currentState?.show();
+        refresh.currentState?.show();
       } else {
         context.read<HomeState>().onRefresh();
       }
@@ -30,7 +31,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-        key: context.read<HomeState>().refresh,
+        key: refresh,
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
           child: CustomScrollView(

@@ -8,6 +8,8 @@ class MvPage extends StatefulWidget {
 class _MvPageState extends State<MvPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      color: Color(0xff252525),
+    );
   }
 }

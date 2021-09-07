@@ -6,10 +6,7 @@ import 'package:music/models/automation/personalized_response_entity.dart';
 import 'package:music/utils/http.dart';
 
 class HomeState extends ChangeNotifier {
-  GlobalKey<RefreshIndicatorState> _refresh =
-      GlobalKey<RefreshIndicatorState>();
 
-  GlobalKey<RefreshIndicatorState> get refresh => _refresh;
 
   //推荐歌单
   List<PersonalizedResponseResult> _recommendationList =
