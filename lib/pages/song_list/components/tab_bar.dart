@@ -3,12 +3,17 @@ import 'package:provider/provider.dart';
 
 import '../state.dart';
 
+typedef OnChangeType(int index);
+
 class SongListTabBar extends StatelessWidget {
+  final OnChangeType onChange;
+
+  SongListTabBar({required this.onChange});
+
   @override
   Widget build(BuildContext context) {
     final tags = context.watch<SongListSate>().tags;
     final active = context.watch<SongListSate>().active;
-    final changeTab = context.read<SongListSate>().changeTab;
     return Container(
       height: 60,
       color: Color(0xff252524),
@@ -19,7 +24,7 @@ class SongListTabBar extends StatelessWidget {
             .asMap()
             .keys
             .map((index) => TextButton(
-                onPressed: () => changeTab(index),
+                onPressed: () => onChange(index),
                 style: TextButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 15)),
                 child: Text(

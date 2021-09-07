@@ -14,28 +14,35 @@ class SongListPage extends StatefulWidget {
 }
 
 class _SongListPageState extends State<SongListPage> {
+  ScrollController scrollController = ScrollController();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-      context.read<SongListSate>().getTags();
-      context.read<SongListSate>().changeTab(0);
+      context.read<SongListSate>().init();
     });
+  }
+
+  void scrollTop() {
+    final double top = 180;
+    scrollController.jumpTo(scrollController.offset >= top ? top : 0);
   }
 
   @override
   Widget build(BuildContext context) {
-    final scrollController = context.read<SongListSate>().scrollController;
     final tags = context.watch<SongListSate>().tags;
     final index = context.watch<SongListSate>().active;
     final list = context.watch<SongListSate>().listMap[tags[index].id] ?? [];
     final current = context.watch<SongListSate>().current;
     final total = context.watch<SongListSate>().total;
+    final onChange = context.watch<SongListSate>().changeTab;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 30),
       child: CustomScrollView(
         controller: scrollController,
+        cacheExtent: 800,
         slivers: [
           SliverToBoxAdapter(
             child: SizedBox(
@@ -49,7 +56,13 @@ class _SongListPageState extends State<SongListPage> {
           SliverPersistentHeader(
               pinned: true,
               delegate: CustomSliverPersistentHeaderDelegate(
-                  height: 60, child: SongListTabBar())),
+                  height: 60,
+                  child: SongListTabBar(
+                    onChange: (int index) {
+                      scrollTop();
+                      onChange(index);
+                    },
+                  ))),
           SliverPersistentHeader(
             pinned: true,
             delegate: CustomSliverPersistentHeaderDelegate(
@@ -81,8 +94,10 @@ class _SongListPageState extends State<SongListPage> {
                 child: Pagination(
                   total: total,
                   current: current,
-                  onChange: (int index) =>
-                      context.read<SongListSate>().changePage(index),
+                  onChange: (int index) {
+                    scrollTop();
+                    context.read<SongListSate>().changePage(index);
+                  },
                 )),
           )
         ],

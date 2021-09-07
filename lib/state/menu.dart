@@ -8,7 +8,7 @@ class MenuState with ChangeNotifier {
     Menu(title: '发现音乐', icon: '', path: '/home'),
     Menu(title: '精彩歌单', icon: '', path: '/song_list'),
     Menu(title: '私人FM', icon: '', path: '/fm'),
-    Menu(title: '视频MV', icon: '', path: '/mv', type: NavigatorType.Main),
+    Menu(title: '视频MV', icon: '', path: '/mv'),
   ];
 
   int get sidebarActive => _sidebarActive;

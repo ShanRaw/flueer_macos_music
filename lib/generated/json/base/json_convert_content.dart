@@ -17,6 +17,8 @@ import 'package:music/models/automation/personalized_privatecontent_entity.dart'
 import 'package:music/generated/json/personalized_privatecontent_entity_helper.dart';
 import 'package:music/models/automation/fine_song_list_response_entity.dart';
 import 'package:music/generated/json/fine_song_list_response_entity_helper.dart';
+import 'package:music/models/automation/top_mv_entity.dart';
+import 'package:music/generated/json/top_mv_entity_helper.dart';
 import 'package:music/models/automation/playlist_detail_response_entity.dart';
 import 'package:music/generated/json/playlist_detail_response_entity_helper.dart';
 
@@ -103,6 +105,20 @@ class JsonConvert<T> {
 				return fineSongListResponsePlaylistsCreatorAvatarDetailFromJson(data as FineSongListResponsePlaylistsCreatorAvatarDetail, json) as T;
 			case FineSongListResponsePlaylistsSubscribers:
 				return fineSongListResponsePlaylistsSubscribersFromJson(data as FineSongListResponsePlaylistsSubscribers, json) as T;
+			case TopMvEntity:
+				return topMvEntityFromJson(data as TopMvEntity, json) as T;
+			case TopMvData:
+				return topMvDataFromJson(data as TopMvData, json) as T;
+			case TopMvDataMv:
+				return topMvDataMvFromJson(data as TopMvDataMv, json) as T;
+			case TopMvDataMvArtists:
+				return topMvDataMvArtistsFromJson(data as TopMvDataMvArtists, json) as T;
+			case TopMvDataMvVideos:
+				return topMvDataMvVideosFromJson(data as TopMvDataMvVideos, json) as T;
+			case TopMvDataMvVideosTagSign:
+				return topMvDataMvVideosTagSignFromJson(data as TopMvDataMvVideosTagSign, json) as T;
+			case TopMvDataArtists:
+				return topMvDataArtistsFromJson(data as TopMvDataArtists, json) as T;
 			case PlaylistDetailResponseEntity:
 				return playlistDetailResponseEntityFromJson(data as PlaylistDetailResponseEntity, json) as T;
 			case PlaylistDetailResponsePlaylist:
@@ -210,6 +226,20 @@ class JsonConvert<T> {
 				return fineSongListResponsePlaylistsCreatorAvatarDetailToJson(data as FineSongListResponsePlaylistsCreatorAvatarDetail);
 			case FineSongListResponsePlaylistsSubscribers:
 				return fineSongListResponsePlaylistsSubscribersToJson(data as FineSongListResponsePlaylistsSubscribers);
+			case TopMvEntity:
+				return topMvEntityToJson(data as TopMvEntity);
+			case TopMvData:
+				return topMvDataToJson(data as TopMvData);
+			case TopMvDataMv:
+				return topMvDataMvToJson(data as TopMvDataMv);
+			case TopMvDataMvArtists:
+				return topMvDataMvArtistsToJson(data as TopMvDataMvArtists);
+			case TopMvDataMvVideos:
+				return topMvDataMvVideosToJson(data as TopMvDataMvVideos);
+			case TopMvDataMvVideosTagSign:
+				return topMvDataMvVideosTagSignToJson(data as TopMvDataMvVideosTagSign);
+			case TopMvDataArtists:
+				return topMvDataArtistsToJson(data as TopMvDataArtists);
 			case PlaylistDetailResponseEntity:
 				return playlistDetailResponseEntityToJson(data as PlaylistDetailResponseEntity);
 			case PlaylistDetailResponsePlaylist:
@@ -353,6 +383,27 @@ class JsonConvert<T> {
 		}
 		if(type == (FineSongListResponsePlaylistsSubscribers).toString()){
 			return FineSongListResponsePlaylistsSubscribers().fromJson(json);
+		}
+		if(type == (TopMvEntity).toString()){
+			return TopMvEntity().fromJson(json);
+		}
+		if(type == (TopMvData).toString()){
+			return TopMvData().fromJson(json);
+		}
+		if(type == (TopMvDataMv).toString()){
+			return TopMvDataMv().fromJson(json);
+		}
+		if(type == (TopMvDataMvArtists).toString()){
+			return TopMvDataMvArtists().fromJson(json);
+		}
+		if(type == (TopMvDataMvVideos).toString()){
+			return TopMvDataMvVideos().fromJson(json);
+		}
+		if(type == (TopMvDataMvVideosTagSign).toString()){
+			return TopMvDataMvVideosTagSign().fromJson(json);
+		}
+		if(type == (TopMvDataArtists).toString()){
+			return TopMvDataArtists().fromJson(json);
 		}
 		if(type == (PlaylistDetailResponseEntity).toString()){
 			return PlaylistDetailResponseEntity().fromJson(json);
@@ -512,6 +563,27 @@ class JsonConvert<T> {
 		}
 		if(<FineSongListResponsePlaylistsSubscribers>[] is M){
 			return data.map<FineSongListResponsePlaylistsSubscribers>((e) => FineSongListResponsePlaylistsSubscribers().fromJson(e)).toList() as M;
+		}
+		if(<TopMvEntity>[] is M){
+			return data.map<TopMvEntity>((e) => TopMvEntity().fromJson(e)).toList() as M;
+		}
+		if(<TopMvData>[] is M){
+			return data.map<TopMvData>((e) => TopMvData().fromJson(e)).toList() as M;
+		}
+		if(<TopMvDataMv>[] is M){
+			return data.map<TopMvDataMv>((e) => TopMvDataMv().fromJson(e)).toList() as M;
+		}
+		if(<TopMvDataMvArtists>[] is M){
+			return data.map<TopMvDataMvArtists>((e) => TopMvDataMvArtists().fromJson(e)).toList() as M;
+		}
+		if(<TopMvDataMvVideos>[] is M){
+			return data.map<TopMvDataMvVideos>((e) => TopMvDataMvVideos().fromJson(e)).toList() as M;
+		}
+		if(<TopMvDataMvVideosTagSign>[] is M){
+			return data.map<TopMvDataMvVideosTagSign>((e) => TopMvDataMvVideosTagSign().fromJson(e)).toList() as M;
+		}
+		if(<TopMvDataArtists>[] is M){
+			return data.map<TopMvDataArtists>((e) => TopMvDataArtists().fromJson(e)).toList() as M;
 		}
 		if(<PlaylistDetailResponseEntity>[] is M){
 			return data.map<PlaylistDetailResponseEntity>((e) => PlaylistDetailResponseEntity().fromJson(e)).toList() as M;

@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
           child: CustomScrollView(
             physics: AlwaysScrollableScrollPhysics(),
+            cacheExtent: 800,
             slivers: [
               SliverToBoxAdapter(
                 child: ListTitle(

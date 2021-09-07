@@ -7,11 +7,9 @@ import 'package:music/models/automation/tag_response_entity.dart';
 import 'package:music/utils/http.dart';
 
 class SongListSate extends ChangeNotifier {
-  //scroll 控制器
-  ScrollController scrollController = ScrollController();
 
   //每次请求加载的数量
-  static int _size = 50;
+  static int _size = 20;
 
   //当前tab高亮的下表
   int _active = 0;
@@ -45,8 +43,17 @@ class SongListSate extends ChangeNotifier {
 
   Map<int, List<SongListResPlaylists>> get listMap => _listMap;
 
+  init() async {
+    _active = 0;
+    Future.wait([
+      getTags(),
+      getList(),
+      getFineSong(),
+    ]);
+  }
+
   //获取标签数据
-  void getTags() async {
+  Future getTags() async {
     final res =
         TagResponseEntity().fromJson(await Http.api(api: Apis.playlistHot));
     _tags = [
@@ -86,18 +93,13 @@ class SongListSate extends ChangeNotifier {
     _active = index;
     _current = 1;
     _total = 1;
+    notifyListeners();
     Future.wait([getFineSong(), getList()]);
-    scrollTop();
   }
 
   void changePage(int page) async {
     _current = page;
-    await getList();
-    scrollTop();
-  }
-
-  void scrollTop() {
-    final double top = 180;
-    scrollController.jumpTo(scrollController.offset >= top ? top : 0);
+    notifyListeners();
+    getList();
   }
 }
