@@ -21,7 +21,6 @@ class PlayListModal extends StatelessWidget {
         child: Container(
           width: 400,
           height: 800 - 50 - 60,
-          margin: EdgeInsets.only(top: 50),
           color: Color(0xff353636),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,

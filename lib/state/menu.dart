@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:music/models/menu.dart';
+import 'package:music/pages/home/state.dart';
+import 'package:music/pages/song_list/state.dart';
+import 'package:provider/provider.dart';
 
 class MenuState with ChangeNotifier {
   int _sidebarActive = 0;
 
   List<Menu> _menus = [
-    Menu(title: '发现音乐', icon: '', path: '/home'),
-    Menu(title: '精彩歌单', icon: '', path: '/song_list'),
+    Menu(
+        title: '发现音乐',
+        icon: '',
+        path: '/home'),
+    Menu(
+        title: '精彩歌单',
+        icon: '',
+        path: '/song_list'),
     Menu(title: '私人FM', icon: '', path: '/fm'),
     Menu(title: '视频MV', icon: '', path: '/mv'),
   ];

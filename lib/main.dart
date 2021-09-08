@@ -15,6 +15,7 @@ void main() async {
     setWindowMinSize(Size(1300, 800));
     setWindowMaxSize(Size(1300, 800));
   }
+
   runApp(MyApp());
 }
 

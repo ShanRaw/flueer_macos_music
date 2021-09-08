@@ -1,27 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:music/pages/home/state.dart';
 import 'components/exclusive_memory.dart';
 import 'components/list_title.dart';
-import 'package:provider/provider.dart';
-
 import 'components/new_song_list.dart';
 import 'components/recommended_song _ist.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  GlobalKey<RefreshIndicatorState> refresh = GlobalKey<RefreshIndicatorState>();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    context.read<HomeState>().init();
-    super.initState();
-  }
-
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(

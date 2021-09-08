@@ -11,7 +11,7 @@ class MusicControllerSlider extends StatelessWidget {
     final music = context.watch<MusicState>().music;
     return Positioned(
       left: 0,
-      top: -22,
+      top: -20,
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: SliderTheme(

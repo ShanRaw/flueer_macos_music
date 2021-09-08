@@ -78,7 +78,9 @@ class SongListDetailsHead extends StatelessWidget {
                             width: 20,
                             height: 20,
                             fit: BoxFit.fill,
-                            placeholder: (_, __) => Placeholder(),
+                            placeholder: (_, __) => ImageDefault.placeholder,
+                            errorWidget: (_, __, ___) =>
+                                ImageDefault.defaultImageWhite,
                           )
                         : SizedBox(
                             width: 20,
@@ -214,7 +216,7 @@ class SongListDetailsHead extends StatelessWidget {
                       style: TextStyle(fontSize: 12, color: Colors.white60),
                       children: [
                         TextSpan(text: '简介：'),
-                        TextSpan(text: '${data?.playlist?.description??''}'),
+                        TextSpan(text: '${data?.playlist?.description ?? ''}'),
                       ]))
             ],
           )),

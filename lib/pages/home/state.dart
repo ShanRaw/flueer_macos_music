@@ -7,19 +7,31 @@ import 'package:music/utils/http.dart';
 
 class HomeState extends ChangeNotifier {
   //推荐歌单
-  List<PersonalizedResponseResult> _recommendationList = [];
+  List<PersonalizedResponseResult> _recommendationList =
+      List<PersonalizedResponseResult>.filled(
+          10,
+          PersonalizedResponseResult().fromJson(
+              {'picUrl': 'https://cdn.wbdear.com/playlist_playlist.9.png'}));
 
   List<PersonalizedResponseResult> get recommendationList =>
       _recommendationList;
 
   //独家放送
-  List<PersonalizedPrivatecontentResult> _personalizedPrivatecontentResult = [];
+  List<PersonalizedPrivatecontentResult> _personalizedPrivatecontentResult =
+      List<PersonalizedPrivatecontentResult>.filled(
+          3,
+          PersonalizedPrivatecontentResult().fromJson(
+              {'picUrl': 'https://cdn.wbdear.com/playlist_playlist.9.png'}));
 
   List<PersonalizedPrivatecontentResult> get personalizedPrivatecontentResult =>
       _personalizedPrivatecontentResult;
 
   //推荐新音乐
-  List<PersonalizedNewsongResult> _personalizedNewsong = [];
+  List<PersonalizedNewsongResult> _personalizedNewsong =
+      List<PersonalizedNewsongResult>.filled(
+          10,
+          PersonalizedNewsongResult().fromJson(
+              {'picUrl': 'https://cdn.wbdear.com/playlist_playlist.9.png'}));
 
   List<PersonalizedNewsongResult> get personalizedNewsong =>
       _personalizedNewsong;

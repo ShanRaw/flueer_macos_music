@@ -26,14 +26,12 @@ class MainPage extends StatelessWidget {
                 key: ChildNavigator.key,
                 observers: [ChildNavigator.routeObserver],
                 onGenerateRoute: (RouteSettings setting) {
-                  WidgetBuilder builder = routes[setting.name] ??
-                      (_) => CustomRouteObserver(child: HomePage());
+                  WidgetBuilder builder =
+                      routes[setting.name] ?? routes['/home']!;
                   return PageRouteBuilder(
                       transitionDuration: Duration.zero,
                       reverseTransitionDuration: Duration.zero,
-                      pageBuilder: (_, __, ___) => CustomRouteObserver(
-                            child: builder(_),
-                          ),
+                      pageBuilder: (_, __, ___) => builder(_),
                       // transitionDuration: Duration.zero,
                       settings: setting);
                 },

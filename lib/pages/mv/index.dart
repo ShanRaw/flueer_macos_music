@@ -16,8 +16,6 @@ class _MvPageState extends State<MvPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    context.read<MvState>().init();
     super.initState();
     _scrollController.addListener(() async {
       if (_scrollController.position.pixels >=
