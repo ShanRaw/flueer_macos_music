@@ -3,7 +3,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:music/pages/song_list/state.dart';
 import 'package:music/utils/child_navigator.dart';
-import 'package:music/utils/image_deault.dart';
 import 'package:provider/provider.dart';
 
 class FineSongHead extends StatelessWidget {
@@ -36,17 +35,15 @@ class FineSongHead extends StatelessWidget {
               padding: EdgeInsets.all(15),
               child: Row(
                 children: <Widget>[
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(5),
-                    child: CachedNetworkImage(
-                      imageUrl: item.coverImgUrl ?? '',
-                      width: 120,
-                      height: 120,
-                      fit: BoxFit.fill,
-                      placeholder: (context, url) => ImageDefault.placeholder,
-                      errorWidget: (_, __, ___) =>
-                          ImageDefault.defaultImageWhite,
-                    ),
+                  Container(
+                    width: 120,
+                    height: 120,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        image: DecorationImage(
+                            image: CachedNetworkImageProvider(
+                                item.coverImgUrl ?? ''),
+                            fit: BoxFit.cover)),
                   ),
                   SizedBox(
                     width: 10,

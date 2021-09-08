@@ -24,7 +24,6 @@ class MainPage extends StatelessWidget {
               Expanded(
                   child: Navigator(
                 key: ChildNavigator.key,
-                // initialRoute: '/home',
                 observers: [ChildNavigator.routeObserver],
                 onGenerateRoute: (RouteSettings setting) {
                   WidgetBuilder builder = routes[setting.name] ??

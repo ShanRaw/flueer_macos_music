@@ -7,9 +7,8 @@ import 'package:music/models/automation/tag_response_entity.dart';
 import 'package:music/utils/http.dart';
 
 class SongListSate extends ChangeNotifier {
-
   //每次请求加载的数量
-  static int _size = 20;
+  int _size = 20;
 
   //当前tab高亮的下表
   int _active = 0;
@@ -44,7 +43,6 @@ class SongListSate extends ChangeNotifier {
   Map<int, List<SongListResPlaylists>> get listMap => _listMap;
 
   init() async {
-    _active = 0;
     Future.wait([
       getTags(),
       getList(),
@@ -83,7 +81,11 @@ class SongListSate extends ChangeNotifier {
       'limit': _size,
       'offset': (_current - 1) * _size,
     }));
-    listMap.addAll({_tags[_active].id ?? 0: res.playlists ?? []});
+    if (listMap[_tags[_active].id ?? 0] == null) {
+      listMap.addAll({_tags[_active].id ?? 0: res.playlists ?? []});
+    } else {
+      listMap[_tags[_active].id ?? 0] = res.playlists ?? [];
+    }
     _total = res.total == null ? 1 : (res.total! / _size).ceil();
     notifyListeners();
   }
@@ -101,5 +103,12 @@ class SongListSate extends ChangeNotifier {
     _current = page;
     notifyListeners();
     getList();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    print('1');
+    super.dispose();
   }
 }

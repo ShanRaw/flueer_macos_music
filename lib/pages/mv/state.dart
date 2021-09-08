@@ -4,8 +4,11 @@ import 'package:music/models/automation/top_mv_entity.dart';
 import 'package:music/utils/http.dart';
 
 class MvState extends ChangeNotifier {
+  int _size = 20;
+
+  bool _isFinish = false;
+
   List<MvTapItem> tabs = [
-    MvTapItem(name: '全部', id: ''),
     MvTapItem(name: '内地', id: '内地'),
     MvTapItem(name: '港台', id: '港台'),
     MvTapItem(name: '欧美', id: '欧美'),
@@ -21,21 +24,29 @@ class MvState extends ChangeNotifier {
 
   List<TopMvData> get list => _list;
 
-  Future getTabData() async {
-    final res = TopMvEntity().fromJson(await Http.api(
-        api: Apis.topMv, params: {'limit': 30, 'area': tabs[_active].id}));
-    _list = res.data ?? [];
+  Future getListData() async {
+    if (_isFinish) return;
+    final res = TopMvEntity().fromJson(await Http.api(api: Apis.topMv, params: {
+      'limit': _size,
+      'area': tabs[_active].id,
+      'offset': _list.length
+    }));
+    _isFinish = res.hasMore == true ? false : true;
+    _list.addAll(res.data ?? []);
     notifyListeners();
   }
 
   changeTab(int index) {
     _active = index;
+    _isFinish = false;
     notifyListeners();
-    getTabData();
+    _list = [];
+    getListData();
   }
 
   Future init() async {
-    getTabData();
+    _isFinish = false;
+    getListData();
   }
 }
 
