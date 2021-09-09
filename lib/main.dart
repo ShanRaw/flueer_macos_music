@@ -14,7 +14,11 @@ void main() async {
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     setWindowMinSize(Size(1300, 800));
     setWindowMaxSize(Size(1300, 800));
-    setWindowFrame(Rect.fromLTWH(200, 200, 1300, 800));
+    final res = await getWindowInfo();
+    setWindowFrame(Rect.fromCenter(
+        center: res.screen?.frame.center ?? Offset(200, 200),
+        width: 1300,
+        height: 800));
   }
 
   runApp(MyApp());

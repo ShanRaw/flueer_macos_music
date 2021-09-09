@@ -19,7 +19,6 @@ class _SongListPageState extends State<SongListPage> {
   @override
   void initState() {
     // TODO: implement initState
-    context.read<SongListSate>().init();
     super.initState();
   }
 
@@ -36,8 +35,9 @@ class _SongListPageState extends State<SongListPage> {
     final current = context.watch<SongListSate>().current;
     final total = context.watch<SongListSate>().total;
     final onChange = context.watch<SongListSate>().changeTab;
-    return Padding(
+    return Container(
       padding: EdgeInsets.symmetric(horizontal: 30),
+      color: Color(0xff252524),
       child: CustomScrollView(
         controller: scrollController,
         cacheExtent: 800,

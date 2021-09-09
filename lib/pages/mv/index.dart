@@ -16,7 +16,6 @@ class _MvPageState extends State<MvPage> {
 
   @override
   void initState() {
-    context.read<MvState>().init();
     super.initState();
     _scrollController.addListener(() async {
       if (_scrollController.position.pixels >=
@@ -34,8 +33,9 @@ class _MvPageState extends State<MvPage> {
     final tabs = context.watch<MvState>().tabs;
     final active = context.watch<MvState>().active;
     final list = context.watch<MvState>().list;
-    return Padding(
+    return Container(
       padding: EdgeInsets.symmetric(horizontal: 30),
+      color: Color(0xff252524),
       child: CustomScrollView(
         controller: _scrollController,
         cacheExtent: 800,
