@@ -16,6 +16,13 @@ class SongListPage extends StatefulWidget {
 class _SongListPageState extends State<SongListPage> {
   ScrollController scrollController = ScrollController();
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    context.read<SongListSate>().init();
+    super.initState();
+  }
+
   void scrollTop() {
     final double top = 180;
     scrollController.jumpTo(scrollController.offset >= top ? top : 0);

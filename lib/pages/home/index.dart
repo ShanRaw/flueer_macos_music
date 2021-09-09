@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:music/pages/home/state.dart';
 import 'components/exclusive_memory.dart';
 import 'components/list_title.dart';
 import 'components/new_song_list.dart';
 import 'components/recommended_song _ist.dart';
+import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    context.read<HomeState>().init();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
