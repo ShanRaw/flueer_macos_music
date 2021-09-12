@@ -30,14 +30,14 @@ class _SearchBarState extends State<SearchBar> {
           ),
           Expanded(
               child: TextField(
-            // controller: controller,
+            controller: controller,
             style:
                 TextStyle(fontSize: 12, color: Color(0xffC0C0C0), height: 1.2),
             textAlignVertical: TextAlignVertical.center,
             cursorWidth: 1,
             cursorHeight: 12 * 1.2,
             onSubmitted: (value) {
-              // controller.clear();
+              controller.clear();
               ChildNavigator.push('/search', arguments: value);
             },
             cursorColor: Color(0xffC0C0C0),

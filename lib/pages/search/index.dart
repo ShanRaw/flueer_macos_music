@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:music/config/apis.dart';
-import 'package:music/pages/search/tab_body.dart';
+import 'package:music/pages/search/song_list_tab_body.dart';
+import 'package:music/pages/search/song_tab_body.dart';
 import 'package:music/utils/http.dart';
 
 class SearchPage extends StatefulWidget {
   @override
   _SearchPageState createState() => _SearchPageState();
 }
+
+typedef TabItemTypeBody<Widget>();
 
 class TabItemType {
   String name;
@@ -19,9 +22,14 @@ class _SearchPageState extends State<SearchPage> {
   List<TabItemType> menus = [
     TabItemType(name: '单曲', type: 1),
     // TabItemType(name: '歌手', type: 100),
-    TabItemType(name: '歌单', type: 1000),
+    TabItemType(name: '歌单', type: 1000)
   ];
   int active = 0;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +37,7 @@ class _SearchPageState extends State<SearchPage> {
     return Container(
       color: Color(0xff252524),
       child: DefaultTabController(
-          length: 3,
+          length: menus.length,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,12 +78,13 @@ class _SearchPageState extends State<SearchPage> {
               ),
               Expanded(
                   child: TabBarView(
-                children: menus
-                    .map((e) => SearchTabBody(
-                          keyword: keyword,
-                          type: e.type,
-                        ))
-                    .toList(),
+                children: [
+                  SearchSongTabBody(
+                    type: 1,
+                    keyword: keyword,
+                  ),
+                  SearchSongListTabBody(keyword: keyword, type: 1000)
+                ],
               ))
             ],
           )),
