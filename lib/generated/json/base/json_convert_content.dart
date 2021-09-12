@@ -11,6 +11,8 @@ import 'package:music/models/automation/personalized_newsong_entity.dart';
 import 'package:music/generated/json/personalized_newsong_entity_helper.dart';
 import 'package:music/models/automation/tag_response_entity.dart';
 import 'package:music/generated/json/tag_response_entity_helper.dart';
+import 'package:music/models/automation/search_song_list_entity.dart';
+import 'package:music/generated/json/search_song_list_entity_helper.dart';
 import 'package:music/models/automation/fine_list_response_entity.dart';
 import 'package:music/generated/json/fine_list_response_entity_helper.dart';
 import 'package:music/models/automation/personalized_privatecontent_entity.dart';
@@ -19,6 +21,8 @@ import 'package:music/models/automation/fine_song_list_response_entity.dart';
 import 'package:music/generated/json/fine_song_list_response_entity_helper.dart';
 import 'package:music/models/automation/top_mv_entity.dart';
 import 'package:music/generated/json/top_mv_entity_helper.dart';
+import 'package:music/models/automation/search_entity.dart';
+import 'package:music/generated/json/search_entity_helper.dart';
 import 'package:music/models/automation/playlist_detail_response_entity.dart';
 import 'package:music/generated/json/playlist_detail_response_entity_helper.dart';
 
@@ -81,6 +85,32 @@ class JsonConvert<T> {
 				return tagResponseTagsFromJson(data as TagResponseTags, json) as T;
 			case TagResponseTagsPlaylistTag:
 				return tagResponseTagsPlaylistTagFromJson(data as TagResponseTagsPlaylistTag, json) as T;
+			case SearchSongListEntity:
+				return searchSongListEntityFromJson(data as SearchSongListEntity, json) as T;
+			case SearchSongListResult:
+				return searchSongListResultFromJson(data as SearchSongListResult, json) as T;
+			case SearchSongListResultPlaylists:
+				return searchSongListResultPlaylistsFromJson(data as SearchSongListResultPlaylists, json) as T;
+			case SearchSongListResultPlaylistsCreator:
+				return searchSongListResultPlaylistsCreatorFromJson(data as SearchSongListResultPlaylistsCreator, json) as T;
+			case SearchSongListResultPlaylistsTrack:
+				return searchSongListResultPlaylistsTrackFromJson(data as SearchSongListResultPlaylistsTrack, json) as T;
+			case SearchSongListResultPlaylistsTrackArtists:
+				return searchSongListResultPlaylistsTrackArtistsFromJson(data as SearchSongListResultPlaylistsTrackArtists, json) as T;
+			case SearchSongListResultPlaylistsTrackAlbum:
+				return searchSongListResultPlaylistsTrackAlbumFromJson(data as SearchSongListResultPlaylistsTrackAlbum, json) as T;
+			case SearchSongListResultPlaylistsTrackAlbumArtist:
+				return searchSongListResultPlaylistsTrackAlbumArtistFromJson(data as SearchSongListResultPlaylistsTrackAlbumArtist, json) as T;
+			case SearchSongListResultPlaylistsTrackAlbumArtists:
+				return searchSongListResultPlaylistsTrackAlbumArtistsFromJson(data as SearchSongListResultPlaylistsTrackAlbumArtists, json) as T;
+			case SearchSongListResultPlaylistsTrackHMusic:
+				return searchSongListResultPlaylistsTrackHMusicFromJson(data as SearchSongListResultPlaylistsTrackHMusic, json) as T;
+			case SearchSongListResultPlaylistsTrackMMusic:
+				return searchSongListResultPlaylistsTrackMMusicFromJson(data as SearchSongListResultPlaylistsTrackMMusic, json) as T;
+			case SearchSongListResultPlaylistsTrackLMusic:
+				return searchSongListResultPlaylistsTrackLMusicFromJson(data as SearchSongListResultPlaylistsTrackLMusic, json) as T;
+			case SearchSongListResultPlaylistsTrackBMusic:
+				return searchSongListResultPlaylistsTrackBMusicFromJson(data as SearchSongListResultPlaylistsTrackBMusic, json) as T;
 			case FineListResponseEntity:
 				return fineListResponseEntityFromJson(data as FineListResponseEntity, json) as T;
 			case FineListResponsePlaylists:
@@ -119,6 +149,18 @@ class JsonConvert<T> {
 				return topMvDataMvVideosTagSignFromJson(data as TopMvDataMvVideosTagSign, json) as T;
 			case TopMvDataArtists:
 				return topMvDataArtistsFromJson(data as TopMvDataArtists, json) as T;
+			case SearchEntity:
+				return searchEntityFromJson(data as SearchEntity, json) as T;
+			case SearchResult:
+				return searchResultFromJson(data as SearchResult, json) as T;
+			case SearchResultSongs:
+				return searchResultSongsFromJson(data as SearchResultSongs, json) as T;
+			case SearchResultSongsArtists:
+				return searchResultSongsArtistsFromJson(data as SearchResultSongsArtists, json) as T;
+			case SearchResultSongsAlbum:
+				return searchResultSongsAlbumFromJson(data as SearchResultSongsAlbum, json) as T;
+			case SearchResultSongsAlbumArtist:
+				return searchResultSongsAlbumArtistFromJson(data as SearchResultSongsAlbumArtist, json) as T;
 			case PlaylistDetailResponseEntity:
 				return playlistDetailResponseEntityFromJson(data as PlaylistDetailResponseEntity, json) as T;
 			case PlaylistDetailResponsePlaylist:
@@ -202,6 +244,32 @@ class JsonConvert<T> {
 				return tagResponseTagsToJson(data as TagResponseTags);
 			case TagResponseTagsPlaylistTag:
 				return tagResponseTagsPlaylistTagToJson(data as TagResponseTagsPlaylistTag);
+			case SearchSongListEntity:
+				return searchSongListEntityToJson(data as SearchSongListEntity);
+			case SearchSongListResult:
+				return searchSongListResultToJson(data as SearchSongListResult);
+			case SearchSongListResultPlaylists:
+				return searchSongListResultPlaylistsToJson(data as SearchSongListResultPlaylists);
+			case SearchSongListResultPlaylistsCreator:
+				return searchSongListResultPlaylistsCreatorToJson(data as SearchSongListResultPlaylistsCreator);
+			case SearchSongListResultPlaylistsTrack:
+				return searchSongListResultPlaylistsTrackToJson(data as SearchSongListResultPlaylistsTrack);
+			case SearchSongListResultPlaylistsTrackArtists:
+				return searchSongListResultPlaylistsTrackArtistsToJson(data as SearchSongListResultPlaylistsTrackArtists);
+			case SearchSongListResultPlaylistsTrackAlbum:
+				return searchSongListResultPlaylistsTrackAlbumToJson(data as SearchSongListResultPlaylistsTrackAlbum);
+			case SearchSongListResultPlaylistsTrackAlbumArtist:
+				return searchSongListResultPlaylistsTrackAlbumArtistToJson(data as SearchSongListResultPlaylistsTrackAlbumArtist);
+			case SearchSongListResultPlaylistsTrackAlbumArtists:
+				return searchSongListResultPlaylistsTrackAlbumArtistsToJson(data as SearchSongListResultPlaylistsTrackAlbumArtists);
+			case SearchSongListResultPlaylistsTrackHMusic:
+				return searchSongListResultPlaylistsTrackHMusicToJson(data as SearchSongListResultPlaylistsTrackHMusic);
+			case SearchSongListResultPlaylistsTrackMMusic:
+				return searchSongListResultPlaylistsTrackMMusicToJson(data as SearchSongListResultPlaylistsTrackMMusic);
+			case SearchSongListResultPlaylistsTrackLMusic:
+				return searchSongListResultPlaylistsTrackLMusicToJson(data as SearchSongListResultPlaylistsTrackLMusic);
+			case SearchSongListResultPlaylistsTrackBMusic:
+				return searchSongListResultPlaylistsTrackBMusicToJson(data as SearchSongListResultPlaylistsTrackBMusic);
 			case FineListResponseEntity:
 				return fineListResponseEntityToJson(data as FineListResponseEntity);
 			case FineListResponsePlaylists:
@@ -240,6 +308,18 @@ class JsonConvert<T> {
 				return topMvDataMvVideosTagSignToJson(data as TopMvDataMvVideosTagSign);
 			case TopMvDataArtists:
 				return topMvDataArtistsToJson(data as TopMvDataArtists);
+			case SearchEntity:
+				return searchEntityToJson(data as SearchEntity);
+			case SearchResult:
+				return searchResultToJson(data as SearchResult);
+			case SearchResultSongs:
+				return searchResultSongsToJson(data as SearchResultSongs);
+			case SearchResultSongsArtists:
+				return searchResultSongsArtistsToJson(data as SearchResultSongsArtists);
+			case SearchResultSongsAlbum:
+				return searchResultSongsAlbumToJson(data as SearchResultSongsAlbum);
+			case SearchResultSongsAlbumArtist:
+				return searchResultSongsAlbumArtistToJson(data as SearchResultSongsAlbumArtist);
 			case PlaylistDetailResponseEntity:
 				return playlistDetailResponseEntityToJson(data as PlaylistDetailResponseEntity);
 			case PlaylistDetailResponsePlaylist:
@@ -348,6 +428,45 @@ class JsonConvert<T> {
 		if(type == (TagResponseTagsPlaylistTag).toString()){
 			return TagResponseTagsPlaylistTag().fromJson(json);
 		}
+		if(type == (SearchSongListEntity).toString()){
+			return SearchSongListEntity().fromJson(json);
+		}
+		if(type == (SearchSongListResult).toString()){
+			return SearchSongListResult().fromJson(json);
+		}
+		if(type == (SearchSongListResultPlaylists).toString()){
+			return SearchSongListResultPlaylists().fromJson(json);
+		}
+		if(type == (SearchSongListResultPlaylistsCreator).toString()){
+			return SearchSongListResultPlaylistsCreator().fromJson(json);
+		}
+		if(type == (SearchSongListResultPlaylistsTrack).toString()){
+			return SearchSongListResultPlaylistsTrack().fromJson(json);
+		}
+		if(type == (SearchSongListResultPlaylistsTrackArtists).toString()){
+			return SearchSongListResultPlaylistsTrackArtists().fromJson(json);
+		}
+		if(type == (SearchSongListResultPlaylistsTrackAlbum).toString()){
+			return SearchSongListResultPlaylistsTrackAlbum().fromJson(json);
+		}
+		if(type == (SearchSongListResultPlaylistsTrackAlbumArtist).toString()){
+			return SearchSongListResultPlaylistsTrackAlbumArtist().fromJson(json);
+		}
+		if(type == (SearchSongListResultPlaylistsTrackAlbumArtists).toString()){
+			return SearchSongListResultPlaylistsTrackAlbumArtists().fromJson(json);
+		}
+		if(type == (SearchSongListResultPlaylistsTrackHMusic).toString()){
+			return SearchSongListResultPlaylistsTrackHMusic().fromJson(json);
+		}
+		if(type == (SearchSongListResultPlaylistsTrackMMusic).toString()){
+			return SearchSongListResultPlaylistsTrackMMusic().fromJson(json);
+		}
+		if(type == (SearchSongListResultPlaylistsTrackLMusic).toString()){
+			return SearchSongListResultPlaylistsTrackLMusic().fromJson(json);
+		}
+		if(type == (SearchSongListResultPlaylistsTrackBMusic).toString()){
+			return SearchSongListResultPlaylistsTrackBMusic().fromJson(json);
+		}
 		if(type == (FineListResponseEntity).toString()){
 			return FineListResponseEntity().fromJson(json);
 		}
@@ -404,6 +523,24 @@ class JsonConvert<T> {
 		}
 		if(type == (TopMvDataArtists).toString()){
 			return TopMvDataArtists().fromJson(json);
+		}
+		if(type == (SearchEntity).toString()){
+			return SearchEntity().fromJson(json);
+		}
+		if(type == (SearchResult).toString()){
+			return SearchResult().fromJson(json);
+		}
+		if(type == (SearchResultSongs).toString()){
+			return SearchResultSongs().fromJson(json);
+		}
+		if(type == (SearchResultSongsArtists).toString()){
+			return SearchResultSongsArtists().fromJson(json);
+		}
+		if(type == (SearchResultSongsAlbum).toString()){
+			return SearchResultSongsAlbum().fromJson(json);
+		}
+		if(type == (SearchResultSongsAlbumArtist).toString()){
+			return SearchResultSongsAlbumArtist().fromJson(json);
 		}
 		if(type == (PlaylistDetailResponseEntity).toString()){
 			return PlaylistDetailResponseEntity().fromJson(json);
@@ -528,6 +665,45 @@ class JsonConvert<T> {
 		if(<TagResponseTagsPlaylistTag>[] is M){
 			return data.map<TagResponseTagsPlaylistTag>((e) => TagResponseTagsPlaylistTag().fromJson(e)).toList() as M;
 		}
+		if(<SearchSongListEntity>[] is M){
+			return data.map<SearchSongListEntity>((e) => SearchSongListEntity().fromJson(e)).toList() as M;
+		}
+		if(<SearchSongListResult>[] is M){
+			return data.map<SearchSongListResult>((e) => SearchSongListResult().fromJson(e)).toList() as M;
+		}
+		if(<SearchSongListResultPlaylists>[] is M){
+			return data.map<SearchSongListResultPlaylists>((e) => SearchSongListResultPlaylists().fromJson(e)).toList() as M;
+		}
+		if(<SearchSongListResultPlaylistsCreator>[] is M){
+			return data.map<SearchSongListResultPlaylistsCreator>((e) => SearchSongListResultPlaylistsCreator().fromJson(e)).toList() as M;
+		}
+		if(<SearchSongListResultPlaylistsTrack>[] is M){
+			return data.map<SearchSongListResultPlaylistsTrack>((e) => SearchSongListResultPlaylistsTrack().fromJson(e)).toList() as M;
+		}
+		if(<SearchSongListResultPlaylistsTrackArtists>[] is M){
+			return data.map<SearchSongListResultPlaylistsTrackArtists>((e) => SearchSongListResultPlaylistsTrackArtists().fromJson(e)).toList() as M;
+		}
+		if(<SearchSongListResultPlaylistsTrackAlbum>[] is M){
+			return data.map<SearchSongListResultPlaylistsTrackAlbum>((e) => SearchSongListResultPlaylistsTrackAlbum().fromJson(e)).toList() as M;
+		}
+		if(<SearchSongListResultPlaylistsTrackAlbumArtist>[] is M){
+			return data.map<SearchSongListResultPlaylistsTrackAlbumArtist>((e) => SearchSongListResultPlaylistsTrackAlbumArtist().fromJson(e)).toList() as M;
+		}
+		if(<SearchSongListResultPlaylistsTrackAlbumArtists>[] is M){
+			return data.map<SearchSongListResultPlaylistsTrackAlbumArtists>((e) => SearchSongListResultPlaylistsTrackAlbumArtists().fromJson(e)).toList() as M;
+		}
+		if(<SearchSongListResultPlaylistsTrackHMusic>[] is M){
+			return data.map<SearchSongListResultPlaylistsTrackHMusic>((e) => SearchSongListResultPlaylistsTrackHMusic().fromJson(e)).toList() as M;
+		}
+		if(<SearchSongListResultPlaylistsTrackMMusic>[] is M){
+			return data.map<SearchSongListResultPlaylistsTrackMMusic>((e) => SearchSongListResultPlaylistsTrackMMusic().fromJson(e)).toList() as M;
+		}
+		if(<SearchSongListResultPlaylistsTrackLMusic>[] is M){
+			return data.map<SearchSongListResultPlaylistsTrackLMusic>((e) => SearchSongListResultPlaylistsTrackLMusic().fromJson(e)).toList() as M;
+		}
+		if(<SearchSongListResultPlaylistsTrackBMusic>[] is M){
+			return data.map<SearchSongListResultPlaylistsTrackBMusic>((e) => SearchSongListResultPlaylistsTrackBMusic().fromJson(e)).toList() as M;
+		}
 		if(<FineListResponseEntity>[] is M){
 			return data.map<FineListResponseEntity>((e) => FineListResponseEntity().fromJson(e)).toList() as M;
 		}
@@ -584,6 +760,24 @@ class JsonConvert<T> {
 		}
 		if(<TopMvDataArtists>[] is M){
 			return data.map<TopMvDataArtists>((e) => TopMvDataArtists().fromJson(e)).toList() as M;
+		}
+		if(<SearchEntity>[] is M){
+			return data.map<SearchEntity>((e) => SearchEntity().fromJson(e)).toList() as M;
+		}
+		if(<SearchResult>[] is M){
+			return data.map<SearchResult>((e) => SearchResult().fromJson(e)).toList() as M;
+		}
+		if(<SearchResultSongs>[] is M){
+			return data.map<SearchResultSongs>((e) => SearchResultSongs().fromJson(e)).toList() as M;
+		}
+		if(<SearchResultSongsArtists>[] is M){
+			return data.map<SearchResultSongsArtists>((e) => SearchResultSongsArtists().fromJson(e)).toList() as M;
+		}
+		if(<SearchResultSongsAlbum>[] is M){
+			return data.map<SearchResultSongsAlbum>((e) => SearchResultSongsAlbum().fromJson(e)).toList() as M;
+		}
+		if(<SearchResultSongsAlbumArtist>[] is M){
+			return data.map<SearchResultSongsAlbumArtist>((e) => SearchResultSongsAlbumArtist().fromJson(e)).toList() as M;
 		}
 		if(<PlaylistDetailResponseEntity>[] is M){
 			return data.map<PlaylistDetailResponseEntity>((e) => PlaylistDetailResponseEntity().fromJson(e)).toList() as M;

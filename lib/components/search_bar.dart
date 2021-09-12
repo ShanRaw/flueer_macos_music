@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:music/utils/child_navigator.dart';
 
 class SearchBar extends StatefulWidget {
   @override
   _SearchBarState createState() => _SearchBarState();
 }
 
-class _SearchBarState extends State<SearchBar>  {
+class _SearchBarState extends State<SearchBar> {
+  TextEditingController controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,11 +30,16 @@ class _SearchBarState extends State<SearchBar>  {
           ),
           Expanded(
               child: TextField(
+            // controller: controller,
             style:
                 TextStyle(fontSize: 12, color: Color(0xffC0C0C0), height: 1.2),
             textAlignVertical: TextAlignVertical.center,
             cursorWidth: 1,
             cursorHeight: 12 * 1.2,
+            onSubmitted: (value) {
+              // controller.clear();
+              ChildNavigator.push('/search', arguments: value);
+            },
             cursorColor: Color(0xffC0C0C0),
             decoration: InputDecoration(
                 border: OutlineInputBorder(borderSide: BorderSide.none),

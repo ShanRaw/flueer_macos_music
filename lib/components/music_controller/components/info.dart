@@ -75,6 +75,7 @@ class MusicControllerInfo extends StatelessWidget {
               height: 60,
               child: TextButton(
                 onPressed: context.read<MusicState>().changePlayMode,
+                style: TextButton.styleFrom(padding: EdgeInsets.zero),
                 child: Text(
                   CustomFunction.playTypeToText(playControlState),
                   style: TextStyle(fontSize: 12, color: Colors.white70),

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:music/components/custom_sliver_persistent_header_delegate.dart';
 import 'package:music/pages/mv/state.dart';
+import 'package:music/utils/main_navigator.dart';
 import 'package:provider/provider.dart';
 import 'package:music/utils/int_expansion.dart';
 
@@ -81,7 +82,9 @@ class _MvPageState extends State<MvPage> {
             childAspectRatio: 250 / 190,
             children: list
                 .map((e) => TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      MainNavigator.push('/mv_detail');
+                    },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,

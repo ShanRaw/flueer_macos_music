@@ -36,6 +36,7 @@ class MusicControllerBtn extends StatelessWidget {
               height: 35,
               child: TextButton(
                 onPressed: context.read<MusicState>().playOrPause,
+                style: TextButton.styleFrom(padding: EdgeInsets.zero),
                 child: Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(

@@ -25,7 +25,7 @@ class HomeState extends ChangeNotifier {
       _personalizedNewsong;
 
   Future init() async {
-    Future.wait([getList(), getPersonalizedList(), getNewSong()]);
+    await Future.wait([getList(), getPersonalizedList(), getNewSong()]);
   }
 
   //获取推荐歌单列表
