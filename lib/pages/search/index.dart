@@ -47,16 +47,9 @@ class _SearchPageState extends State<SearchPage> {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),
-                child: RichText(
-                  text: TextSpan(
-                      text: keyword,
-                      style: TextStyle(fontSize: 26, color: Color(0xffB2B3B3)),
-                      children: [
-                        TextSpan(
-                            text: '  找到 68 首${menus[active].name}',
-                            style: TextStyle(
-                                fontSize: 12, color: Color(0xff646464)))
-                      ]),
+                child: Text(
+                  keyword,
+                  style: TextStyle(fontSize: 26, color: Color(0xffB2B3B3)),
                 ),
               ),
               SizedBox(
