@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:music/components/song_item.dart';
 import 'package:music/pages/song_list_details/components/song_list_tab.dart';
-import 'package:music/state/music.dart';
 import 'components/head.dart';
 import 'module.dart';
-import 'package:music/utils/int_expansion.dart';
-import 'package:provider/provider.dart';
 
 class SongListDetailsPage extends StatefulWidget {
   @override

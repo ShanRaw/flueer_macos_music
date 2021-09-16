@@ -33,6 +33,12 @@ class Apis {
   //全部mv
   static Api get topMv => Api(url: '/top/mv');
 
+  //获取MV信息
+  static Api get mvDetail => Api(url: '/mv/detail');
+
+  //获取MV播放地址
+  static Api get mvUrl => Api(url: '/mv/url');
+
   //搜索
   static Api get search => Api(url: '/search');
 }

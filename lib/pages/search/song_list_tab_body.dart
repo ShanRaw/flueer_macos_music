@@ -1,9 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:music/components/song_item.dart';
 import 'package:music/config/apis.dart';
-import 'package:music/models/automation/playlist_detail_response_entity.dart';
-import 'package:music/models/automation/search_entity.dart';
 import 'package:music/models/automation/search_song_list_entity.dart';
 import 'package:music/utils/child_navigator.dart';
 import 'package:music/utils/http.dart';

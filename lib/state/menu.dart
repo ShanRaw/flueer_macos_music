@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:music/models/menu.dart';
-import 'package:music/pages/home/state.dart';
-import 'package:music/pages/song_list/state.dart';
-import 'package:provider/provider.dart';
 
 class MenuState with ChangeNotifier {
   int _sidebarActive = 0;

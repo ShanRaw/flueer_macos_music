@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:dart_vlc/dart_vlc.dart';
 import 'package:flutter/material.dart';
 import 'package:music/pages/home/state.dart';
 import 'package:music/pages/mv/state.dart';
@@ -20,7 +21,7 @@ void main() async {
         width: 1300,
         height: 800));
   }
-
+  DartVLC.initialize();
   runApp(MyApp());
 }
 

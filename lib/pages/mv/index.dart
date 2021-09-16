@@ -83,7 +83,7 @@ class _MvPageState extends State<MvPage> {
             children: list
                 .map((e) => TextButton(
                     onPressed: () {
-                      MainNavigator.push('/mv_detail');
+                      MainNavigator.push('/mv_detail',arguments: e);
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,

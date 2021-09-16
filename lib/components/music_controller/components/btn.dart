@@ -21,6 +21,7 @@ class MusicControllerBtn extends StatelessWidget {
               height: 30,
               child: TextButton(
                 onPressed: context.read<MusicState>().playPre,
+                style: TextButton.styleFrom(padding: EdgeInsets.zero),
                 child: Icon(
                   Icons.chevron_left,
                   color: Color(0xffC24B39),
@@ -60,6 +61,7 @@ class MusicControllerBtn extends StatelessWidget {
               height: 30,
               child: TextButton(
                 onPressed: context.read<MusicState>().playNext,
+                style: TextButton.styleFrom(padding: EdgeInsets.zero),
                 child: Icon(
                   Icons.chevron_right,
                   color: Color(0xffC24B39),

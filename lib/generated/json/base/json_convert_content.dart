@@ -9,6 +9,8 @@ import 'package:music/models/automation/personalized_response_entity.dart';
 import 'package:music/generated/json/personalized_response_entity_helper.dart';
 import 'package:music/models/automation/personalized_newsong_entity.dart';
 import 'package:music/generated/json/personalized_newsong_entity_helper.dart';
+import 'package:music/models/automation/mv_detail_entity.dart';
+import 'package:music/generated/json/mv_detail_entity_helper.dart';
 import 'package:music/models/automation/tag_response_entity.dart';
 import 'package:music/generated/json/tag_response_entity_helper.dart';
 import 'package:music/models/automation/search_song_list_entity.dart';
@@ -25,6 +27,8 @@ import 'package:music/models/automation/search_entity.dart';
 import 'package:music/generated/json/search_entity_helper.dart';
 import 'package:music/models/automation/playlist_detail_response_entity.dart';
 import 'package:music/generated/json/playlist_detail_response_entity_helper.dart';
+import 'package:music/models/automation/mv_url_entity.dart';
+import 'package:music/generated/json/mv_url_entity_helper.dart';
 
 class JsonConvert<T> {
 	T fromJson(Map<String, dynamic> json) {
@@ -79,6 +83,16 @@ class JsonConvert<T> {
 				return personalizedNewsongResultSongPrivilegeFreeTrialPrivilegeFromJson(data as PersonalizedNewsongResultSongPrivilegeFreeTrialPrivilege, json) as T;
 			case PersonalizedNewsongResultSongPrivilegeChargeInfoList:
 				return personalizedNewsongResultSongPrivilegeChargeInfoListFromJson(data as PersonalizedNewsongResultSongPrivilegeChargeInfoList, json) as T;
+			case MvDetailEntity:
+				return mvDetailEntityFromJson(data as MvDetailEntity, json) as T;
+			case MvDetailMp:
+				return mvDetailMpFromJson(data as MvDetailMp, json) as T;
+			case MvDetailData:
+				return mvDetailDataFromJson(data as MvDetailData, json) as T;
+			case MvDetailDataBrs:
+				return mvDetailDataBrsFromJson(data as MvDetailDataBrs, json) as T;
+			case MvDetailDataArtists:
+				return mvDetailDataArtistsFromJson(data as MvDetailDataArtists, json) as T;
 			case TagResponseEntity:
 				return tagResponseEntityFromJson(data as TagResponseEntity, json) as T;
 			case TagResponseTags:
@@ -190,7 +204,11 @@ class JsonConvert<T> {
 			case PlaylistDetailResponsePrivilegesFreeTrialPrivilege:
 				return playlistDetailResponsePrivilegesFreeTrialPrivilegeFromJson(data as PlaylistDetailResponsePrivilegesFreeTrialPrivilege, json) as T;
 			case PlaylistDetailResponsePrivilegesChargeInfoList:
-				return playlistDetailResponsePrivilegesChargeInfoListFromJson(data as PlaylistDetailResponsePrivilegesChargeInfoList, json) as T;    }
+				return playlistDetailResponsePrivilegesChargeInfoListFromJson(data as PlaylistDetailResponsePrivilegesChargeInfoList, json) as T;
+			case MvUrlEntity:
+				return mvUrlEntityFromJson(data as MvUrlEntity, json) as T;
+			case MvUrlData:
+				return mvUrlDataFromJson(data as MvUrlData, json) as T;    }
 		return data as T;
 	}
 
@@ -238,6 +256,16 @@ class JsonConvert<T> {
 				return personalizedNewsongResultSongPrivilegeFreeTrialPrivilegeToJson(data as PersonalizedNewsongResultSongPrivilegeFreeTrialPrivilege);
 			case PersonalizedNewsongResultSongPrivilegeChargeInfoList:
 				return personalizedNewsongResultSongPrivilegeChargeInfoListToJson(data as PersonalizedNewsongResultSongPrivilegeChargeInfoList);
+			case MvDetailEntity:
+				return mvDetailEntityToJson(data as MvDetailEntity);
+			case MvDetailMp:
+				return mvDetailMpToJson(data as MvDetailMp);
+			case MvDetailData:
+				return mvDetailDataToJson(data as MvDetailData);
+			case MvDetailDataBrs:
+				return mvDetailDataBrsToJson(data as MvDetailDataBrs);
+			case MvDetailDataArtists:
+				return mvDetailDataArtistsToJson(data as MvDetailDataArtists);
 			case TagResponseEntity:
 				return tagResponseEntityToJson(data as TagResponseEntity);
 			case TagResponseTags:
@@ -350,6 +378,10 @@ class JsonConvert<T> {
 				return playlistDetailResponsePrivilegesFreeTrialPrivilegeToJson(data as PlaylistDetailResponsePrivilegesFreeTrialPrivilege);
 			case PlaylistDetailResponsePrivilegesChargeInfoList:
 				return playlistDetailResponsePrivilegesChargeInfoListToJson(data as PlaylistDetailResponsePrivilegesChargeInfoList);
+			case MvUrlEntity:
+				return mvUrlEntityToJson(data as MvUrlEntity);
+			case MvUrlData:
+				return mvUrlDataToJson(data as MvUrlData);
 			}
 			return data as T;
 		}
@@ -418,6 +450,21 @@ class JsonConvert<T> {
 		}
 		if(type == (PersonalizedNewsongResultSongPrivilegeChargeInfoList).toString()){
 			return PersonalizedNewsongResultSongPrivilegeChargeInfoList().fromJson(json);
+		}
+		if(type == (MvDetailEntity).toString()){
+			return MvDetailEntity().fromJson(json);
+		}
+		if(type == (MvDetailMp).toString()){
+			return MvDetailMp().fromJson(json);
+		}
+		if(type == (MvDetailData).toString()){
+			return MvDetailData().fromJson(json);
+		}
+		if(type == (MvDetailDataBrs).toString()){
+			return MvDetailDataBrs().fromJson(json);
+		}
+		if(type == (MvDetailDataArtists).toString()){
+			return MvDetailDataArtists().fromJson(json);
 		}
 		if(type == (TagResponseEntity).toString()){
 			return TagResponseEntity().fromJson(json);
@@ -587,6 +634,12 @@ class JsonConvert<T> {
 		if(type == (PlaylistDetailResponsePrivilegesChargeInfoList).toString()){
 			return PlaylistDetailResponsePrivilegesChargeInfoList().fromJson(json);
 		}
+		if(type == (MvUrlEntity).toString()){
+			return MvUrlEntity().fromJson(json);
+		}
+		if(type == (MvUrlData).toString()){
+			return MvUrlData().fromJson(json);
+		}
 
 		return null;
 	}
@@ -655,6 +708,21 @@ class JsonConvert<T> {
 		}
 		if(<PersonalizedNewsongResultSongPrivilegeChargeInfoList>[] is M){
 			return data.map<PersonalizedNewsongResultSongPrivilegeChargeInfoList>((e) => PersonalizedNewsongResultSongPrivilegeChargeInfoList().fromJson(e)).toList() as M;
+		}
+		if(<MvDetailEntity>[] is M){
+			return data.map<MvDetailEntity>((e) => MvDetailEntity().fromJson(e)).toList() as M;
+		}
+		if(<MvDetailMp>[] is M){
+			return data.map<MvDetailMp>((e) => MvDetailMp().fromJson(e)).toList() as M;
+		}
+		if(<MvDetailData>[] is M){
+			return data.map<MvDetailData>((e) => MvDetailData().fromJson(e)).toList() as M;
+		}
+		if(<MvDetailDataBrs>[] is M){
+			return data.map<MvDetailDataBrs>((e) => MvDetailDataBrs().fromJson(e)).toList() as M;
+		}
+		if(<MvDetailDataArtists>[] is M){
+			return data.map<MvDetailDataArtists>((e) => MvDetailDataArtists().fromJson(e)).toList() as M;
 		}
 		if(<TagResponseEntity>[] is M){
 			return data.map<TagResponseEntity>((e) => TagResponseEntity().fromJson(e)).toList() as M;
@@ -823,6 +891,12 @@ class JsonConvert<T> {
 		}
 		if(<PlaylistDetailResponsePrivilegesChargeInfoList>[] is M){
 			return data.map<PlaylistDetailResponsePrivilegesChargeInfoList>((e) => PlaylistDetailResponsePrivilegesChargeInfoList().fromJson(e)).toList() as M;
+		}
+		if(<MvUrlEntity>[] is M){
+			return data.map<MvUrlEntity>((e) => MvUrlEntity().fromJson(e)).toList() as M;
+		}
+		if(<MvUrlData>[] is M){
+			return data.map<MvUrlData>((e) => MvUrlData().fromJson(e)).toList() as M;
 		}
 
 		throw Exception("not found");

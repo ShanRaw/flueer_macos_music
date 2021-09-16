@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:music/config/apis.dart';
 import 'package:music/pages/search/song_list_tab_body.dart';
 import 'package:music/pages/search/song_tab_body.dart';
-import 'package:music/utils/http.dart';
 
 class SearchPage extends StatefulWidget {
   @override
