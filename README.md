@@ -2,6 +2,14 @@
 
 > 接口感谢 [NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi) 
 
+### 注意事项
+
+由于依赖[dart_vlc](https://github.com/alexmercerind/dart_vlc) 需要安装cmake
+```shell script
+brew install cmake
+```
+视频返回的时候报错请查看[dart_vlc Issues](https://github.com/alexmercerind/dart_vlc/pull/149) 修复,作者是手动进行了[修复](https://github.com/alexmercerind/dart_vlc/commit/225cda12cd9feece156a3866127559dceb3d1209)
+
 ### 功能
 
 - 歌曲播放  已实现
@@ -10,7 +18,7 @@
 - 歌曲和歌单搜索 需要优化路由和TextField问题
 - FM 待实现
 - 视频列表
-- 视频播放 待实现
+- 视频播放 简单实现
 
 ### 问题
 
