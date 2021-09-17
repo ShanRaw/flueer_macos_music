@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:dart_vlc/dart_vlc.dart';
 import 'package:flutter/material.dart';
+import 'package:music/pages/fm/state.dart';
 import 'package:music/pages/home/state.dart';
 import 'package:music/pages/mv/state.dart';
 import 'package:music/pages/root.dart';
@@ -40,6 +41,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<SongListSate>(create: (_) => SongListSate()),
         //视频
         ChangeNotifierProvider<MvState>(create: (_) => MvState()),
+        //电台
+        ChangeNotifierProvider<FmState>(create: (_) => FmState()),
       ],
       child: MaterialApp(
         title: 'SR.Music',

@@ -21,6 +21,8 @@ import 'package:music/models/automation/personalized_privatecontent_entity.dart'
 import 'package:music/generated/json/personalized_privatecontent_entity_helper.dart';
 import 'package:music/models/automation/fine_song_list_response_entity.dart';
 import 'package:music/generated/json/fine_song_list_response_entity_helper.dart';
+import 'package:music/models/automation/dj_hot_entity.dart';
+import 'package:music/generated/json/dj_hot_entity_helper.dart';
 import 'package:music/models/automation/top_mv_entity.dart';
 import 'package:music/generated/json/top_mv_entity_helper.dart';
 import 'package:music/models/automation/search_entity.dart';
@@ -149,6 +151,12 @@ class JsonConvert<T> {
 				return fineSongListResponsePlaylistsCreatorAvatarDetailFromJson(data as FineSongListResponsePlaylistsCreatorAvatarDetail, json) as T;
 			case FineSongListResponsePlaylistsSubscribers:
 				return fineSongListResponsePlaylistsSubscribersFromJson(data as FineSongListResponsePlaylistsSubscribers, json) as T;
+			case DjHotEntity:
+				return djHotEntityFromJson(data as DjHotEntity, json) as T;
+			case DjHotDjRadios:
+				return djHotDjRadiosFromJson(data as DjHotDjRadios, json) as T;
+			case DjHotDjRadiosDj:
+				return djHotDjRadiosDjFromJson(data as DjHotDjRadiosDj, json) as T;
 			case TopMvEntity:
 				return topMvEntityFromJson(data as TopMvEntity, json) as T;
 			case TopMvData:
@@ -322,6 +330,12 @@ class JsonConvert<T> {
 				return fineSongListResponsePlaylistsCreatorAvatarDetailToJson(data as FineSongListResponsePlaylistsCreatorAvatarDetail);
 			case FineSongListResponsePlaylistsSubscribers:
 				return fineSongListResponsePlaylistsSubscribersToJson(data as FineSongListResponsePlaylistsSubscribers);
+			case DjHotEntity:
+				return djHotEntityToJson(data as DjHotEntity);
+			case DjHotDjRadios:
+				return djHotDjRadiosToJson(data as DjHotDjRadios);
+			case DjHotDjRadiosDj:
+				return djHotDjRadiosDjToJson(data as DjHotDjRadiosDj);
 			case TopMvEntity:
 				return topMvEntityToJson(data as TopMvEntity);
 			case TopMvData:
@@ -549,6 +563,15 @@ class JsonConvert<T> {
 		}
 		if(type == (FineSongListResponsePlaylistsSubscribers).toString()){
 			return FineSongListResponsePlaylistsSubscribers().fromJson(json);
+		}
+		if(type == (DjHotEntity).toString()){
+			return DjHotEntity().fromJson(json);
+		}
+		if(type == (DjHotDjRadios).toString()){
+			return DjHotDjRadios().fromJson(json);
+		}
+		if(type == (DjHotDjRadiosDj).toString()){
+			return DjHotDjRadiosDj().fromJson(json);
 		}
 		if(type == (TopMvEntity).toString()){
 			return TopMvEntity().fromJson(json);
@@ -807,6 +830,15 @@ class JsonConvert<T> {
 		}
 		if(<FineSongListResponsePlaylistsSubscribers>[] is M){
 			return data.map<FineSongListResponsePlaylistsSubscribers>((e) => FineSongListResponsePlaylistsSubscribers().fromJson(e)).toList() as M;
+		}
+		if(<DjHotEntity>[] is M){
+			return data.map<DjHotEntity>((e) => DjHotEntity().fromJson(e)).toList() as M;
+		}
+		if(<DjHotDjRadios>[] is M){
+			return data.map<DjHotDjRadios>((e) => DjHotDjRadios().fromJson(e)).toList() as M;
+		}
+		if(<DjHotDjRadiosDj>[] is M){
+			return data.map<DjHotDjRadiosDj>((e) => DjHotDjRadiosDj().fromJson(e)).toList() as M;
 		}
 		if(<TopMvEntity>[] is M){
 			return data.map<TopMvEntity>((e) => TopMvEntity().fromJson(e)).toList() as M;

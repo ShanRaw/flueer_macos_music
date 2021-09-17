@@ -37,6 +37,7 @@ class _MvDetail extends State<MvDetail> {
   @override
   void dispose() {
     // TODO: implement dispose
+    _player?.stop();
     super.dispose();
   }
 

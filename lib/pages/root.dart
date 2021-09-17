@@ -20,9 +20,11 @@ class _RootPageState extends State<RootPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<HomeState>().init();
-    context.read<SongListSate>().init();
-    context.read<MvState>().init();
+    Future.wait([
+      context.read<HomeState>().init(),
+      context.read<SongListSate>().init(),
+      context.read<MvState>().init(),
+    ]);
   }
 
   @override

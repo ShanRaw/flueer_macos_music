@@ -41,4 +41,7 @@ class Apis {
 
   //搜索
   static Api get search => Api(url: '/search');
+
+  //电台排行
+  static Api get djHot => Api(url: '/dj/hot');
 }
