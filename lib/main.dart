@@ -48,6 +48,7 @@ class MyApp extends StatelessWidget {
         title: 'SR.Music',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+            buttonTheme: ButtonThemeData(padding: EdgeInsets.zero),
             textTheme:
                 TextTheme(button: TextStyle(fontWeight: FontWeight.normal))),
         // routes: routes,

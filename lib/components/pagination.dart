@@ -161,6 +161,7 @@ class PaginationItem extends StatelessWidget {
           onPressed: type == PaginationItemType.Disable ? () {} : onPressed,
           child: renderBox(),
           style: TextButton.styleFrom(
+              padding: EdgeInsets.zero,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5)),
               side: BorderSide(color: Color(0xff3B3B3B)),
