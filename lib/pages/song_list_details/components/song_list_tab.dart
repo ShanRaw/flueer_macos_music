@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:music/pages/song_list_details/components/head.dart';
 
 class SongListTab extends StatelessWidget {
+  final SongListDetailsHeadType type;
+
+  SongListTab({this.type = SongListDetailsHeadType.SONG});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 30),
+      padding: EdgeInsets.symmetric(horizontal: 30),
+      height: 50,
       decoration: BoxDecoration(
+          color: Color(0xff252524),
           border:
               Border(bottom: BorderSide(width: .5, color: Color(0xff313030)))),
       child: Row(
         children: [
           Container(
             child: Text(
-              '歌曲列表',
+              type == SongListDetailsHeadType.SONG ? '歌曲列表' : '电台列表',
               style: TextStyle(fontSize: 14, color: Color(0xffC14B38)),
             ),
             height: 30,

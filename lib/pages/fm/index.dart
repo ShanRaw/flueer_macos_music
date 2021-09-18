@@ -2,15 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:music/components/pagination.dart';
 import 'package:music/pages/fm/state.dart';
-import 'package:music/utils/image_deault.dart';
+import 'package:music/utils/child_navigator.dart';
 import 'package:provider/provider.dart';
 
 class FmPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final list = context.watch<FmState>().list;
-    return Padding(
+    return Container(
       padding: EdgeInsets.all(15),
+      color: Color(0xff252524),
       child: Column(
         children: [
           Expanded(
@@ -21,7 +22,8 @@ class FmPage extends StatelessWidget {
               childAspectRatio: .85,
               children: list
                   .map((e) => TextButton(
-                        onPressed: () {},
+                        onPressed: () =>
+                            ChildNavigator.push('/fm_detail', arguments: e),
                         style: TextButton.styleFrom(padding: EdgeInsets.zero),
                         child: Column(
                           children: [
@@ -29,12 +31,11 @@ class FmPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(5),
                               child: AspectRatio(
                                 aspectRatio: 1,
-                                child: CachedNetworkImage(
-                                  imageUrl: e.picUrl ?? '',
-                                  placeholder: (_, __) =>
-                                      ImageDefault.placeholder,
-                                  errorWidget: (_, __, ___) =>
-                                      ImageDefault.defaultImageWhite,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: CachedNetworkImageProvider(
+                                              e.picUrl ?? ''))),
                                 ),
                               ),
                             ),

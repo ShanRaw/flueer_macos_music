@@ -44,4 +44,10 @@ class Apis {
 
   //电台排行
   static Api get djHot => Api(url: '/dj/hot');
+
+  //电台详情
+  static Api get djDetail => Api(url: '/dj/detail');
+
+  //电台节目
+  static Api get djProgram => Api(url: '/dj/program');
 }

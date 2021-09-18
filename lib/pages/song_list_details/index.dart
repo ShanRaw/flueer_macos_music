@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music/components/custom_sliver_persistent_header_delegate.dart';
 import 'package:music/components/song_item.dart';
 import 'package:music/pages/song_list_details/components/song_list_tab.dart';
 import 'components/head.dart';
@@ -24,9 +25,10 @@ class _SongListDetailsPageState extends State<SongListDetailsPage>
                   data: data,
                 ),
               ),
-              SliverToBoxAdapter(
-                child: SongListTab(),
-              ),
+              SliverPersistentHeader(
+                  pinned: true,
+                  delegate: CustomSliverPersistentHeaderDelegate(
+                      height: 50, child: SongListTab())),
               SliverToBoxAdapter(
                 child: Container(
                   height: 40,
@@ -99,7 +101,7 @@ class _SongListDetailsPageState extends State<SongListDetailsPage>
                           );
                         }).toList() ??
                         []),
-              )
+              ),
             ],
           ),
           onRefresh: onRefresh),

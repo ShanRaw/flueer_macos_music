@@ -24,10 +24,9 @@ class CustomSidebar extends StatelessWidget {
                       menuState.menus[index].initAction!(context);
                     }
                     if (menuState.menus[index].type == NavigatorType.Child) {
-                      ChildNavigator.replace(menuState.menus[index].path);
+                      ChildNavigator.navigate(menuState.menus[index].path);
                       menuState.update(sidebarActive: index);
                     } else {
-                      print(menuState.menus[index].path);
                       MainNavigator.push(menuState.menus[index].path);
                     }
                   },

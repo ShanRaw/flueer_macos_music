@@ -13,6 +13,8 @@ import 'package:music/models/automation/mv_detail_entity.dart';
 import 'package:music/generated/json/mv_detail_entity_helper.dart';
 import 'package:music/models/automation/tag_response_entity.dart';
 import 'package:music/generated/json/tag_response_entity_helper.dart';
+import 'package:music/models/automation/dj_program_entity.dart';
+import 'package:music/generated/json/dj_program_entity_helper.dart';
 import 'package:music/models/automation/search_song_list_entity.dart';
 import 'package:music/generated/json/search_song_list_entity_helper.dart';
 import 'package:music/models/automation/fine_list_response_entity.dart';
@@ -23,6 +25,8 @@ import 'package:music/models/automation/fine_song_list_response_entity.dart';
 import 'package:music/generated/json/fine_song_list_response_entity_helper.dart';
 import 'package:music/models/automation/dj_hot_entity.dart';
 import 'package:music/generated/json/dj_hot_entity_helper.dart';
+import 'package:music/models/automation/dj_detail_entity.dart';
+import 'package:music/generated/json/dj_detail_entity_helper.dart';
 import 'package:music/models/automation/top_mv_entity.dart';
 import 'package:music/generated/json/top_mv_entity_helper.dart';
 import 'package:music/models/automation/search_entity.dart';
@@ -101,6 +105,30 @@ class JsonConvert<T> {
 				return tagResponseTagsFromJson(data as TagResponseTags, json) as T;
 			case TagResponseTagsPlaylistTag:
 				return tagResponseTagsPlaylistTagFromJson(data as TagResponseTagsPlaylistTag, json) as T;
+			case DjProgramEntity:
+				return djProgramEntityFromJson(data as DjProgramEntity, json) as T;
+			case DjProgramPrograms:
+				return djProgramProgramsFromJson(data as DjProgramPrograms, json) as T;
+			case DjProgramProgramsMainSong:
+				return djProgramProgramsMainSongFromJson(data as DjProgramProgramsMainSong, json) as T;
+			case DjProgramProgramsMainSongArtists:
+				return djProgramProgramsMainSongArtistsFromJson(data as DjProgramProgramsMainSongArtists, json) as T;
+			case DjProgramProgramsMainSongAlbum:
+				return djProgramProgramsMainSongAlbumFromJson(data as DjProgramProgramsMainSongAlbum, json) as T;
+			case DjProgramProgramsMainSongAlbumArtist:
+				return djProgramProgramsMainSongAlbumArtistFromJson(data as DjProgramProgramsMainSongAlbumArtist, json) as T;
+			case DjProgramProgramsMainSongAlbumArtists:
+				return djProgramProgramsMainSongAlbumArtistsFromJson(data as DjProgramProgramsMainSongAlbumArtists, json) as T;
+			case DjProgramProgramsMainSongBMusic:
+				return djProgramProgramsMainSongBMusicFromJson(data as DjProgramProgramsMainSongBMusic, json) as T;
+			case DjProgramProgramsMainSongHMusic:
+				return djProgramProgramsMainSongHMusicFromJson(data as DjProgramProgramsMainSongHMusic, json) as T;
+			case DjProgramProgramsMainSongLMusic:
+				return djProgramProgramsMainSongLMusicFromJson(data as DjProgramProgramsMainSongLMusic, json) as T;
+			case DjProgramProgramsDj:
+				return djProgramProgramsDjFromJson(data as DjProgramProgramsDj, json) as T;
+			case DjProgramProgramsRadio:
+				return djProgramProgramsRadioFromJson(data as DjProgramProgramsRadio, json) as T;
 			case SearchSongListEntity:
 				return searchSongListEntityFromJson(data as SearchSongListEntity, json) as T;
 			case SearchSongListResult:
@@ -157,6 +185,16 @@ class JsonConvert<T> {
 				return djHotDjRadiosFromJson(data as DjHotDjRadios, json) as T;
 			case DjHotDjRadiosDj:
 				return djHotDjRadiosDjFromJson(data as DjHotDjRadiosDj, json) as T;
+			case DjDetailEntity:
+				return djDetailEntityFromJson(data as DjDetailEntity, json) as T;
+			case DjDetailData:
+				return djDetailDataFromJson(data as DjDetailData, json) as T;
+			case DjDetailDataDj:
+				return djDetailDataDjFromJson(data as DjDetailDataDj, json) as T;
+			case DjDetailDataCommentDatas:
+				return djDetailDataCommentDatasFromJson(data as DjDetailDataCommentDatas, json) as T;
+			case DjDetailDataCommentDatasUserProfile:
+				return djDetailDataCommentDatasUserProfileFromJson(data as DjDetailDataCommentDatasUserProfile, json) as T;
 			case TopMvEntity:
 				return topMvEntityFromJson(data as TopMvEntity, json) as T;
 			case TopMvData:
@@ -280,6 +318,30 @@ class JsonConvert<T> {
 				return tagResponseTagsToJson(data as TagResponseTags);
 			case TagResponseTagsPlaylistTag:
 				return tagResponseTagsPlaylistTagToJson(data as TagResponseTagsPlaylistTag);
+			case DjProgramEntity:
+				return djProgramEntityToJson(data as DjProgramEntity);
+			case DjProgramPrograms:
+				return djProgramProgramsToJson(data as DjProgramPrograms);
+			case DjProgramProgramsMainSong:
+				return djProgramProgramsMainSongToJson(data as DjProgramProgramsMainSong);
+			case DjProgramProgramsMainSongArtists:
+				return djProgramProgramsMainSongArtistsToJson(data as DjProgramProgramsMainSongArtists);
+			case DjProgramProgramsMainSongAlbum:
+				return djProgramProgramsMainSongAlbumToJson(data as DjProgramProgramsMainSongAlbum);
+			case DjProgramProgramsMainSongAlbumArtist:
+				return djProgramProgramsMainSongAlbumArtistToJson(data as DjProgramProgramsMainSongAlbumArtist);
+			case DjProgramProgramsMainSongAlbumArtists:
+				return djProgramProgramsMainSongAlbumArtistsToJson(data as DjProgramProgramsMainSongAlbumArtists);
+			case DjProgramProgramsMainSongBMusic:
+				return djProgramProgramsMainSongBMusicToJson(data as DjProgramProgramsMainSongBMusic);
+			case DjProgramProgramsMainSongHMusic:
+				return djProgramProgramsMainSongHMusicToJson(data as DjProgramProgramsMainSongHMusic);
+			case DjProgramProgramsMainSongLMusic:
+				return djProgramProgramsMainSongLMusicToJson(data as DjProgramProgramsMainSongLMusic);
+			case DjProgramProgramsDj:
+				return djProgramProgramsDjToJson(data as DjProgramProgramsDj);
+			case DjProgramProgramsRadio:
+				return djProgramProgramsRadioToJson(data as DjProgramProgramsRadio);
 			case SearchSongListEntity:
 				return searchSongListEntityToJson(data as SearchSongListEntity);
 			case SearchSongListResult:
@@ -336,6 +398,16 @@ class JsonConvert<T> {
 				return djHotDjRadiosToJson(data as DjHotDjRadios);
 			case DjHotDjRadiosDj:
 				return djHotDjRadiosDjToJson(data as DjHotDjRadiosDj);
+			case DjDetailEntity:
+				return djDetailEntityToJson(data as DjDetailEntity);
+			case DjDetailData:
+				return djDetailDataToJson(data as DjDetailData);
+			case DjDetailDataDj:
+				return djDetailDataDjToJson(data as DjDetailDataDj);
+			case DjDetailDataCommentDatas:
+				return djDetailDataCommentDatasToJson(data as DjDetailDataCommentDatas);
+			case DjDetailDataCommentDatasUserProfile:
+				return djDetailDataCommentDatasUserProfileToJson(data as DjDetailDataCommentDatasUserProfile);
 			case TopMvEntity:
 				return topMvEntityToJson(data as TopMvEntity);
 			case TopMvData:
@@ -489,6 +561,42 @@ class JsonConvert<T> {
 		if(type == (TagResponseTagsPlaylistTag).toString()){
 			return TagResponseTagsPlaylistTag().fromJson(json);
 		}
+		if(type == (DjProgramEntity).toString()){
+			return DjProgramEntity().fromJson(json);
+		}
+		if(type == (DjProgramPrograms).toString()){
+			return DjProgramPrograms().fromJson(json);
+		}
+		if(type == (DjProgramProgramsMainSong).toString()){
+			return DjProgramProgramsMainSong().fromJson(json);
+		}
+		if(type == (DjProgramProgramsMainSongArtists).toString()){
+			return DjProgramProgramsMainSongArtists().fromJson(json);
+		}
+		if(type == (DjProgramProgramsMainSongAlbum).toString()){
+			return DjProgramProgramsMainSongAlbum().fromJson(json);
+		}
+		if(type == (DjProgramProgramsMainSongAlbumArtist).toString()){
+			return DjProgramProgramsMainSongAlbumArtist().fromJson(json);
+		}
+		if(type == (DjProgramProgramsMainSongAlbumArtists).toString()){
+			return DjProgramProgramsMainSongAlbumArtists().fromJson(json);
+		}
+		if(type == (DjProgramProgramsMainSongBMusic).toString()){
+			return DjProgramProgramsMainSongBMusic().fromJson(json);
+		}
+		if(type == (DjProgramProgramsMainSongHMusic).toString()){
+			return DjProgramProgramsMainSongHMusic().fromJson(json);
+		}
+		if(type == (DjProgramProgramsMainSongLMusic).toString()){
+			return DjProgramProgramsMainSongLMusic().fromJson(json);
+		}
+		if(type == (DjProgramProgramsDj).toString()){
+			return DjProgramProgramsDj().fromJson(json);
+		}
+		if(type == (DjProgramProgramsRadio).toString()){
+			return DjProgramProgramsRadio().fromJson(json);
+		}
 		if(type == (SearchSongListEntity).toString()){
 			return SearchSongListEntity().fromJson(json);
 		}
@@ -572,6 +680,21 @@ class JsonConvert<T> {
 		}
 		if(type == (DjHotDjRadiosDj).toString()){
 			return DjHotDjRadiosDj().fromJson(json);
+		}
+		if(type == (DjDetailEntity).toString()){
+			return DjDetailEntity().fromJson(json);
+		}
+		if(type == (DjDetailData).toString()){
+			return DjDetailData().fromJson(json);
+		}
+		if(type == (DjDetailDataDj).toString()){
+			return DjDetailDataDj().fromJson(json);
+		}
+		if(type == (DjDetailDataCommentDatas).toString()){
+			return DjDetailDataCommentDatas().fromJson(json);
+		}
+		if(type == (DjDetailDataCommentDatasUserProfile).toString()){
+			return DjDetailDataCommentDatasUserProfile().fromJson(json);
 		}
 		if(type == (TopMvEntity).toString()){
 			return TopMvEntity().fromJson(json);
@@ -756,6 +879,42 @@ class JsonConvert<T> {
 		if(<TagResponseTagsPlaylistTag>[] is M){
 			return data.map<TagResponseTagsPlaylistTag>((e) => TagResponseTagsPlaylistTag().fromJson(e)).toList() as M;
 		}
+		if(<DjProgramEntity>[] is M){
+			return data.map<DjProgramEntity>((e) => DjProgramEntity().fromJson(e)).toList() as M;
+		}
+		if(<DjProgramPrograms>[] is M){
+			return data.map<DjProgramPrograms>((e) => DjProgramPrograms().fromJson(e)).toList() as M;
+		}
+		if(<DjProgramProgramsMainSong>[] is M){
+			return data.map<DjProgramProgramsMainSong>((e) => DjProgramProgramsMainSong().fromJson(e)).toList() as M;
+		}
+		if(<DjProgramProgramsMainSongArtists>[] is M){
+			return data.map<DjProgramProgramsMainSongArtists>((e) => DjProgramProgramsMainSongArtists().fromJson(e)).toList() as M;
+		}
+		if(<DjProgramProgramsMainSongAlbum>[] is M){
+			return data.map<DjProgramProgramsMainSongAlbum>((e) => DjProgramProgramsMainSongAlbum().fromJson(e)).toList() as M;
+		}
+		if(<DjProgramProgramsMainSongAlbumArtist>[] is M){
+			return data.map<DjProgramProgramsMainSongAlbumArtist>((e) => DjProgramProgramsMainSongAlbumArtist().fromJson(e)).toList() as M;
+		}
+		if(<DjProgramProgramsMainSongAlbumArtists>[] is M){
+			return data.map<DjProgramProgramsMainSongAlbumArtists>((e) => DjProgramProgramsMainSongAlbumArtists().fromJson(e)).toList() as M;
+		}
+		if(<DjProgramProgramsMainSongBMusic>[] is M){
+			return data.map<DjProgramProgramsMainSongBMusic>((e) => DjProgramProgramsMainSongBMusic().fromJson(e)).toList() as M;
+		}
+		if(<DjProgramProgramsMainSongHMusic>[] is M){
+			return data.map<DjProgramProgramsMainSongHMusic>((e) => DjProgramProgramsMainSongHMusic().fromJson(e)).toList() as M;
+		}
+		if(<DjProgramProgramsMainSongLMusic>[] is M){
+			return data.map<DjProgramProgramsMainSongLMusic>((e) => DjProgramProgramsMainSongLMusic().fromJson(e)).toList() as M;
+		}
+		if(<DjProgramProgramsDj>[] is M){
+			return data.map<DjProgramProgramsDj>((e) => DjProgramProgramsDj().fromJson(e)).toList() as M;
+		}
+		if(<DjProgramProgramsRadio>[] is M){
+			return data.map<DjProgramProgramsRadio>((e) => DjProgramProgramsRadio().fromJson(e)).toList() as M;
+		}
 		if(<SearchSongListEntity>[] is M){
 			return data.map<SearchSongListEntity>((e) => SearchSongListEntity().fromJson(e)).toList() as M;
 		}
@@ -839,6 +998,21 @@ class JsonConvert<T> {
 		}
 		if(<DjHotDjRadiosDj>[] is M){
 			return data.map<DjHotDjRadiosDj>((e) => DjHotDjRadiosDj().fromJson(e)).toList() as M;
+		}
+		if(<DjDetailEntity>[] is M){
+			return data.map<DjDetailEntity>((e) => DjDetailEntity().fromJson(e)).toList() as M;
+		}
+		if(<DjDetailData>[] is M){
+			return data.map<DjDetailData>((e) => DjDetailData().fromJson(e)).toList() as M;
+		}
+		if(<DjDetailDataDj>[] is M){
+			return data.map<DjDetailDataDj>((e) => DjDetailDataDj().fromJson(e)).toList() as M;
+		}
+		if(<DjDetailDataCommentDatas>[] is M){
+			return data.map<DjDetailDataCommentDatas>((e) => DjDetailDataCommentDatas().fromJson(e)).toList() as M;
+		}
+		if(<DjDetailDataCommentDatasUserProfile>[] is M){
+			return data.map<DjDetailDataCommentDatasUserProfile>((e) => DjDetailDataCommentDatasUserProfile().fromJson(e)).toList() as M;
 		}
 		if(<TopMvEntity>[] is M){
 			return data.map<TopMvEntity>((e) => TopMvEntity().fromJson(e)).toList() as M;
