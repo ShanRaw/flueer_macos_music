@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:music/models/automation/playlist_detail_response_entity.dart';
+import 'package:music/models/player_item.dart';
 import 'package:music/state/music.dart';
 import 'package:music/utils/image_deault.dart';
 import 'package:provider/provider.dart';
@@ -22,15 +23,28 @@ class NewSongList extends StatelessWidget {
           .map((index) => InkWell(
               onDoubleTap: () {
                 context.read<MusicState>().play(
-                        music: PlaylistDetailResponsePlaylistTracks().fromJson({
-                      'id': list[index].id,
-                      'dt': list[index].song?.duration,
-                      'name': list[index].name,
-                      'al': list[index].song?.album?.toJson() ?? {},
-                      'ar': List<Map<String, dynamic>>.from(
-                          list[index].song?.artists?.map((e) => e.toJson()) ??
-                              [])
-                    }));
+                    //     music: PlaylistDetailResponsePlaylistTracks().fromJson({
+                    //   'id': list[index].id,
+                    //   'dt': list[index].song?.duration,
+                    //   'name': list[index].name,
+                    //   'al': list[index].song?.album?.toJson() ?? {},
+                    //   'ar': List<Map<String, dynamic>>.from(
+                    //       list[index].song?.artists?.map((e) => e.toJson()) ??
+                    //           [])
+                    // })
+                    music: PlayerItem(
+                        img: list[index].song?.album?.picUrl ?? '',
+                        name: list[index].name ?? '',
+                        author: list[index]
+                                .song
+                                ?.artists
+                                ?.map((e) => e.name)
+                                .join(' ') ??
+                            '',
+                        duration: list[index].song?.duration ?? 0,
+                        url:
+                            'https://music.163.com/song/media/outer/url?id=${list[index].id}.mp3',
+                        id: list[index].song?.id ?? 0));
               },
               child: Row(
                 children: [

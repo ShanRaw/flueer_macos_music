@@ -23,7 +23,7 @@ class MusicControllerSlider extends StatelessWidget {
               overlayShape: RoundSliderOverlayShape(overlayRadius: 20),
           ),
           child: Slider(
-            value: min(progress.toDouble(), music?.dt?.toDouble() ?? 0.0),
+            value: min(progress.toDouble(), music?.duration.toDouble() ?? 0.0),
             onChanged: (double value) =>
                 context.read<MusicState>().changeProgress(value),
             onChangeStart: (_) => context
@@ -33,7 +33,7 @@ class MusicControllerSlider extends StatelessWidget {
                 .read<MusicState>()
                 .changeProgressState(ProgressState.Normal),
             min: 0,
-            max: music?.dt?.toDouble() ?? 0.0,
+            max: music?.duration.toDouble() ?? 0.0,
             activeColor: Color(0xffC24A38),
             inactiveColor: Colors.transparent,
           ),

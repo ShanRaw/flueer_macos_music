@@ -3,6 +3,9 @@ import 'package:music/models/api.dart';
 class Apis {
   Apis._();
 
+  //获取音乐和电台的播放链接
+  static Api get songUrl => Api(method: 'get', url: '/song/url');
+
   //用户每日推荐歌单
   static Api get recommendResource =>
       Api(method: 'get', url: '/recommend/resource');

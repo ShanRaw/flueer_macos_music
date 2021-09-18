@@ -7,11 +7,15 @@ import 'package:music/models/automation/dj_detail_entity.dart';
 import 'package:music/models/automation/dj_hot_entity.dart';
 import 'package:music/models/automation/dj_program_entity.dart';
 import 'package:music/models/automation/playlist_detail_response_entity.dart';
+import 'package:music/models/automation/song_url_entity.dart';
+import 'package:music/models/player_item.dart';
 import 'package:music/pages/song_list_details/components/head.dart';
 import 'package:music/pages/song_list_details/components/song_list_tab.dart';
+import 'package:music/state/music.dart';
 import 'package:music/utils/http.dart';
 import 'package:music/utils/image_deault.dart';
 import 'package:music/utils/int_expansion.dart';
+import 'package:provider/provider.dart';
 
 class FmDetailPage extends StatefulWidget {
   @override
@@ -60,6 +64,51 @@ class _FmDetailPageState extends State<FmDetailPage> {
     ]);
   }
 
+  play(DjProgramPrograms item) async {
+    final res = SongUrlEntity().fromJson(await Http.api(
+        api: Apis.songUrl, params: {'id': item.mainSong?.id ?? 0}));
+    if (res.code != 200 || res.data?.length == 0) {
+      return;
+    }
+    context.read<MusicState>().play(
+        music: PlayerItem(
+            img: item.coverUrl ?? '',
+            name: item.name ?? '',
+            author: data?.name ?? '',
+            duration: item.duration ?? 0,
+            url: res.data![0].url ?? '',
+            id: item.id ?? 0));
+  }
+
+  Future<List<PlayerItem>> getSongs() async {
+    List<PlayerItem> songs = [];
+    final res = SongUrlEntity().fromJson(await Http.api(
+        api: Apis.songUrl,
+        params: {'id': list.map((e) => e.mainSong?.id ?? 0).join(',')}));
+    if (res.code != 200 || res.data?.length == 0) {
+      return songs;
+    }
+    res.data?.reversed;
+    res.data?.asMap().keys.forEach((index) {
+      songs.add(PlayerItem(
+          img: list[index].coverUrl ?? '',
+          name: list[index].name ?? '',
+          author: data?.name ?? '',
+          duration: list[index].duration ?? 0,
+          url: res.data![index].url ?? '',
+          id: list[index].id ?? 0));
+    });
+    return songs;
+  }
+
+  playAll() async {
+    context.read<MusicState>().plays(musics: await getSongs());
+  }
+
+  addAll() async {
+    context.read<MusicState>().addAll(musics: await getSongs());
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -81,25 +130,26 @@ class _FmDetailPageState extends State<FmDetailPage> {
           slivers: [
             SliverToBoxAdapter(
               child: SongListDetailsHead(
-                type: SongListDetailsHeadType.DJ,
-                data: PlaylistDetailResponseEntity().fromJson({
-                  'playlist': {
-                    'coverImgUrl': data?.picUrl ?? '',
-                    'name': data?.name ?? '',
-                    'description': data?.desc ?? '',
-                    'creator': {
-                      'avatarUrl': data?.dj?.avatarUrl ?? '',
-                      'nickname': data?.dj?.nickname
-                    }
-                  }
-                }),
+                data: CustomListHeadModel(
+                    name: data?.name ?? '',
+                    img: data?.picUrl ?? '',
+                    type: SongType.DJ,
+                    nickname: data?.dj?.nickname ?? '',
+                    tags: data?.category ?? '',
+                    playCount: data?.shareCount ?? 0,
+                    trackCount: data?.programCount ?? 0,
+                    createTime: data?.createTime ?? 0,
+                    avatarUrl: data?.dj?.avatarUrl ?? '',
+                    description: data?.desc ?? ''),
+                playAll: playAll,
+                addAll: addAll,
               ),
             ),
             SliverPersistentHeader(
                 pinned: true,
                 delegate: CustomSliverPersistentHeaderDelegate(
                     child: SongListTab(
-                      type: SongListDetailsHeadType.DJ,
+                      type: SongType.DJ,
                     ),
                     height: 50)),
             SliverList(
@@ -108,7 +158,7 @@ class _FmDetailPageState extends State<FmDetailPage> {
                       (e) => SizedBox(
                         height: 65,
                         child: InkWell(
-                            onDoubleTap: () {},
+                            onDoubleTap: () => play(e),
                             child: Container(
                               padding: EdgeInsets.symmetric(
                                   vertical: 7.5, horizontal: 30),
@@ -139,10 +189,20 @@ class _FmDetailPageState extends State<FmDetailPage> {
                                   ),
                                   SizedBox(
                                     width: 150,
-                                    child: Text(
-                                      '喜欢：${e.listenerCount ?? 0}',
-                                      style: TextStyle(
-                                          fontSize: 12, color: Colors.white30),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.play_arrow_rounded,
+                                          size: 12,
+                                          color: Colors.white30,
+                                        ),
+                                        Text(
+                                          ' ${e.listenerCount ?? 0}',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.white30),
+                                        )
+                                      ],
                                     ),
                                   ),
                                   SizedBox(
@@ -150,10 +210,20 @@ class _FmDetailPageState extends State<FmDetailPage> {
                                   ),
                                   SizedBox(
                                     width: 150,
-                                    child: Text(
-                                      '听众：${e.listenerCount ?? 0}',
-                                      style: TextStyle(
-                                          fontSize: 12, color: Colors.white30),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.favorite_outline_rounded,
+                                          size: 12,
+                                          color: Colors.white30,
+                                        ),
+                                        Text(
+                                          ' ${e.likedCount ?? 0}',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.white30),
+                                        )
+                                      ],
                                     ),
                                   ),
                                   SizedBox(

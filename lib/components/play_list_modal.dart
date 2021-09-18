@@ -95,7 +95,7 @@ class PlayListModal extends StatelessWidget {
                                 ),
                                 Expanded(
                                     child: Text(
-                                  '${playList[index].name ?? ''}',
+                                  '${playList[index].name}',
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -104,7 +104,7 @@ class PlayListModal extends StatelessWidget {
                                 SizedBox(
                                   width: 100,
                                   child: Text(
-                                      '${playList[index].ar?.map((e) => e.name).join(',')}',
+                                      '${playList[index].author}',
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
@@ -117,7 +117,7 @@ class PlayListModal extends StatelessWidget {
                                 SizedBox(
                                   width: 50,
                                   child: Text(
-                                      '${playList[index].dt?.toHourMinute ?? '00:00'}',
+                                      '${playList[index].duration.toHourMinute}',
                                       style: TextStyle(
                                           fontSize: 12,
                                           color: Color(0xffB8B7B7))),

@@ -1,20 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:music/models/automation/playlist_detail_response_entity.dart';
-import 'package:music/state/music.dart';
 import 'package:date_format/date_format.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:music/utils/image_deault.dart';
-import 'package:provider/provider.dart';
 
-enum SongListDetailsHeadType { SONG, DJ }
+class CustomListHeadModel {
+  final String img;
+  final String name;
+  final String avatarUrl;
+  final String nickname;
+  final String tags;
+  final int createTime;
+  final int trackCount;
+  final int playCount;
+  final String description;
+  final SongType type;
+
+  CustomListHeadModel({
+    required this.name,
+    required this.img,
+    required this.type,
+    required this.nickname,
+    required this.tags,
+    required this.playCount,
+    required this.trackCount,
+    required this.createTime,
+    required this.avatarUrl,
+    required this.description,
+  });
+}
+
+enum SongType { SONG, DJ }
 
 class SongListDetailsHead extends StatelessWidget {
-  final PlaylistDetailResponseEntity? data;
+  final CustomListHeadModel data;
+  final VoidCallback? playAll;
+  final VoidCallback? addAll;
 
-  final SongListDetailsHeadType type;
-
-  SongListDetailsHead(
-      {required this.data, this.type = SongListDetailsHeadType.SONG});
+  SongListDetailsHead({required this.data, this.playAll, this.addAll});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +50,7 @@ class SongListDetailsHead extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(5),
             child: CachedNetworkImage(
-              imageUrl: data?.playlist?.coverImgUrl ?? '',
+              imageUrl: data.img,
               width: 200,
               height: 200,
               fit: BoxFit.fill,
@@ -57,7 +79,7 @@ class SongListDetailsHead extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                       child: Text(
-                        type == SongListDetailsHeadType.SONG ? '歌单' : '电台',
+                        data.type == SongType.SONG ? '歌单' : '电台',
                         style:
                             TextStyle(fontSize: 10, color: Color(0xffE5624B)),
                       ),
@@ -68,7 +90,7 @@ class SongListDetailsHead extends StatelessWidget {
                   ),
                   Expanded(
                       child: Text(
-                    data?.playlist?.name ?? '',
+                    data.name,
                     style: TextStyle(fontSize: 24, color: Colors.white60),
                   ))
                 ],
@@ -79,34 +101,29 @@ class SongListDetailsHead extends StatelessWidget {
               Row(
                 children: [
                   ClipOval(
-                    child: data?.playlist?.creator?.avatarUrl != null
-                        ? CachedNetworkImage(
-                            imageUrl: data?.playlist?.creator?.avatarUrl ?? '',
-                            width: 20,
-                            height: 20,
-                            fit: BoxFit.fill,
-                            placeholder: (_, __) => ImageDefault.placeholder,
-                            errorWidget: (_, __, ___) =>
-                                ImageDefault.defaultImageWhite,
-                          )
-                        : SizedBox(
-                            width: 20,
-                            height: 20,
-                          ),
+                    child: CachedNetworkImage(
+                      imageUrl: data.avatarUrl,
+                      width: 20,
+                      height: 20,
+                      fit: BoxFit.fill,
+                      placeholder: (_, __) => ImageDefault.placeholder,
+                      errorWidget: (_, __, ___) =>
+                          ImageDefault.defaultImageWhite,
+                    ),
                   ),
                   SizedBox(
                     width: 5,
                   ),
                   Text(
-                    data?.playlist?.creator?.nickname ?? '',
+                    data.nickname,
                     style: TextStyle(fontSize: 12, color: Colors.white60),
                   ),
                   SizedBox(
                     width: 5,
                   ),
-                  type == SongListDetailsHeadType.SONG
+                  data.type == SongType.SONG
                       ? Text(
-                          '${formatDate(DateTime.fromMillisecondsSinceEpoch(data?.playlist?.createTime ?? 0), [
+                          '${formatDate(DateTime.fromMillisecondsSinceEpoch(data.createTime), [
                                 yyyy,
                                 '-',
                                 mm,
@@ -124,7 +141,7 @@ class SongListDetailsHead extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    width: 140,
+                    width: 160,
                     height: 30,
                     decoration: BoxDecoration(
                         color: Color(0xffC9503C),
@@ -133,9 +150,7 @@ class SongListDetailsHead extends StatelessWidget {
                       children: [
                         Expanded(
                           child: TextButton(
-                            onPressed: () => context
-                                .read<MusicState>()
-                                .plays(musics: data?.playlist?.tracks ?? []),
+                            onPressed: playAll,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
@@ -158,13 +173,10 @@ class SongListDetailsHead extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          width: 30,
-                          height: 30,
-                          child: TextButton(
-                            onPressed: () => context
-                                .read<MusicState>()
-                                .addAll(musics: data?.playlist?.tracks ?? []),
+                        TextButton(
+                          onPressed: addAll,
+                          child: SizedBox(
+                            height: 30,
                             child: Icon(
                               Icons.add,
                               size: 20,
@@ -180,84 +192,37 @@ class SongListDetailsHead extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              type == SongListDetailsHeadType.SONG
-                  ? Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+              Text(
+                '标签：${data.tags}',
+                style: TextStyle(fontSize: 12, color: Colors.white60),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              RichText(
+                  text: TextSpan(
+                      style: TextStyle(fontSize: 12, color: Colors.white60),
                       children: [
-                        RichText(
-                            textAlign: TextAlign.left,
-                            text: TextSpan(
-                                text: '标签：',
-                                style: TextStyle(
-                                    fontSize: 12, color: Colors.white60),
-                                children: data?.playlist?.tags
-                                        ?.asMap()
-                                        .keys
-                                        .map((e) => TextSpan(
-                                            text:
-                                                data?.playlist?.tags?[e] ?? '',
-                                            style: TextStyle(
-                                                color: Color(0xff90B8E2)),
-                                            children: data?.playlist?.tags
-                                                        ?.length ==
-                                                    e + 1
-                                                ? []
-                                                : [
-                                                    TextSpan(
-                                                        text: ' / ',
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white60))
-                                                  ]))
-                                        .toList() ??
-                                    [])),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        RichText(
-                            text: TextSpan(
-                                style: TextStyle(
-                                    fontSize: 12, color: Colors.white60),
-                                children: [
-                              TextSpan(text: '歌曲数：'),
-                              TextSpan(
-                                  text: '${data?.playlist?.trackCount ?? ''}'),
-                              TextSpan(text: '    '),
-                              TextSpan(text: '播放数：'),
-                              TextSpan(
-                                  text: '${data?.playlist?.playCount ?? ''}'),
-                            ])),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        RichText(
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            text: TextSpan(
-                                style: TextStyle(
-                                    fontSize: 12, color: Colors.white60),
-                                children: [
-                                  TextSpan(text: '简介：'),
-                                  TextSpan(
-                                      text:
-                                          '${data?.playlist?.description ?? ''}'),
-                                ]))
-                      ],
-                    )
-                  : Column(
-                      mainAxisSize: MainAxisSize.min,
+                    TextSpan(
+                        text: '${data.type == SongType.SONG ? '歌曲数' : '作品数'}：'),
+                    TextSpan(text: '${data.trackCount}'),
+                    TextSpan(text: '    '),
+                    TextSpan(
+                        text: '${data.type == SongType.SONG ? '播放数' : '分享'}：'),
+                    TextSpan(text: '${data.playCount}'),
+                  ])),
+              SizedBox(
+                height: 10,
+              ),
+              RichText(
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  text: TextSpan(
+                      style: TextStyle(fontSize: 12, color: Colors.white60),
                       children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          '${data?.playlist?.description ?? ''}',
-                          style: TextStyle(color: Colors.white60, fontSize: 12),
-                        )
-                      ],
-                    )
+                        TextSpan(text: '简介：'),
+                        TextSpan(text: '${data.description}'),
+                      ]))
             ],
           )),
           SizedBox(

@@ -22,7 +22,19 @@ class _SongListDetailsPageState extends State<SongListDetailsPage>
             slivers: [
               SliverToBoxAdapter(
                 child: SongListDetailsHead(
-                  data: data,
+                  data: CustomListHeadModel(
+                      name: data?.playlist?.name ?? '',
+                      img: data?.playlist?.coverImgUrl ?? '',
+                      type: SongType.SONG,
+                      nickname: data?.playlist?.creator?.nickname ?? '',
+                      tags: data?.playlist?.tags?.map((e) => e).join(' ') ?? '',
+                      playCount: data?.playlist?.playCount ?? 0,
+                      trackCount: data?.playlist?.trackCount ?? 0,
+                      createTime: data?.playlist?.createTime ?? 0,
+                      avatarUrl: data?.playlist?.creator?.avatarUrl ?? '',
+                      description: data?.playlist?.description ?? ''),
+                  playAll: playAll,
+                  addAll: addAll,
                 ),
               ),
               SliverPersistentHeader(

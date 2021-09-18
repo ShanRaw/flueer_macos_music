@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:audioplayers/audioplayers_api.dart';
 import 'package:flutter/material.dart';
 import 'package:music/models/automation/playlist_detail_response_entity.dart';
+import 'package:music/models/player_item.dart';
 import 'package:music/utils/player.dart';
 
 enum PlayControlState { ONE, LOOP, RANDOM_LOOP }
@@ -12,14 +13,14 @@ class MusicState extends ChangeNotifier {
   Random random = Random();
 
   //播放的歌曲列表
-  List<PlaylistDetailResponsePlaylistTracks> _playList = [];
+  List<PlayerItem> _playList = [];
 
-  List<PlaylistDetailResponsePlaylistTracks> get playList => _playList;
+  List<PlayerItem> get playList => _playList;
 
   //播放的歌曲
-  PlaylistDetailResponsePlaylistTracks? _music;
+  PlayerItem? _music;
 
-  PlaylistDetailResponsePlaylistTracks? get music => _music;
+  PlayerItem? get music => _music;
 
   //播放状态
   PlayerState _playState = PlayerState.STOPPED;
@@ -73,41 +74,35 @@ class MusicState extends ChangeNotifier {
   }
 
   //播放一首歌曲
-  Future<int> play(
-      {required PlaylistDetailResponsePlaylistTracks music}) async {
+  Future<int> play({required PlayerItem music}) async {
     if (!_playList.contains(music)) {
       _playList.insert(0, music);
       _playList = _playList.toSet().toList();
     }
     _music = music;
-    final res = await Player.getInstance().play(
-        'https://music.163.com/song/media/outer/url?id=${music.id}.mp3',
-        volume: _volume);
+    final res = await Player.getInstance().play(music.url, volume: _volume);
     return res;
   }
 
   //播放歌曲列表
-  Future<int> plays(
-      {required List<PlaylistDetailResponsePlaylistTracks> musics}) async {
+  Future<int> plays({required List<PlayerItem> musics}) async {
     if (musics.length == 0) return 0;
     _playList.insertAll(0, musics);
     _playList = _playList.toSet().toList();
     _music = musics[0];
-    final res = await Player.getInstance().play(
-        'https://music.163.com/song/media/outer/url?id=${musics[0].id}.mp3',
-        volume: _volume);
+    final res = await Player.getInstance().play(_music!.url, volume: _volume);
     return res;
   }
 
   //添加一首到播放列表
-  void add({required PlaylistDetailResponsePlaylistTracks music}) {
+  void add({required PlayerItem music}) {
     _playList.insert(0, music);
     _playList = _playList.toSet().toList();
     notifyListeners();
   }
 
   //添加多首歌到播放列表
-  void addAll({required List<PlaylistDetailResponsePlaylistTracks> musics}) {
+  void addAll({required List<PlayerItem> musics}) {
     _playList.insertAll(0, musics);
     _playList = _playList.toSet().toList();
     notifyListeners();
@@ -199,7 +194,7 @@ class MusicState extends ChangeNotifier {
   }
 
   //从列表中删除
-  void remove(PlaylistDetailResponsePlaylistTracks item) {
+  void remove(PlayerItem item) {
     if (item.id == _music?.id) {
       _music = null;
       _progress = 0;

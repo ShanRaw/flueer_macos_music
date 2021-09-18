@@ -19,6 +19,8 @@ import 'package:music/models/automation/search_song_list_entity.dart';
 import 'package:music/generated/json/search_song_list_entity_helper.dart';
 import 'package:music/models/automation/fine_list_response_entity.dart';
 import 'package:music/generated/json/fine_list_response_entity_helper.dart';
+import 'package:music/models/automation/song_url_entity.dart';
+import 'package:music/generated/json/song_url_entity_helper.dart';
 import 'package:music/models/automation/personalized_privatecontent_entity.dart';
 import 'package:music/generated/json/personalized_privatecontent_entity_helper.dart';
 import 'package:music/models/automation/fine_song_list_response_entity.dart';
@@ -165,6 +167,14 @@ class JsonConvert<T> {
 				return fineListResponsePlaylistsCreatorAvatarDetailFromJson(data as FineListResponsePlaylistsCreatorAvatarDetail, json) as T;
 			case FineListResponsePlaylistsSubscribers:
 				return fineListResponsePlaylistsSubscribersFromJson(data as FineListResponsePlaylistsSubscribers, json) as T;
+			case SongUrlEntity:
+				return songUrlEntityFromJson(data as SongUrlEntity, json) as T;
+			case SongUrlData:
+				return songUrlDataFromJson(data as SongUrlData, json) as T;
+			case SongUrlDataFreeTrialPrivilege:
+				return songUrlDataFreeTrialPrivilegeFromJson(data as SongUrlDataFreeTrialPrivilege, json) as T;
+			case SongUrlDataFreeTimeTrialPrivilege:
+				return songUrlDataFreeTimeTrialPrivilegeFromJson(data as SongUrlDataFreeTimeTrialPrivilege, json) as T;
 			case PersonalizedPrivatecontentEntity:
 				return personalizedPrivatecontentEntityFromJson(data as PersonalizedPrivatecontentEntity, json) as T;
 			case PersonalizedPrivatecontentResult:
@@ -378,6 +388,14 @@ class JsonConvert<T> {
 				return fineListResponsePlaylistsCreatorAvatarDetailToJson(data as FineListResponsePlaylistsCreatorAvatarDetail);
 			case FineListResponsePlaylistsSubscribers:
 				return fineListResponsePlaylistsSubscribersToJson(data as FineListResponsePlaylistsSubscribers);
+			case SongUrlEntity:
+				return songUrlEntityToJson(data as SongUrlEntity);
+			case SongUrlData:
+				return songUrlDataToJson(data as SongUrlData);
+			case SongUrlDataFreeTrialPrivilege:
+				return songUrlDataFreeTrialPrivilegeToJson(data as SongUrlDataFreeTrialPrivilege);
+			case SongUrlDataFreeTimeTrialPrivilege:
+				return songUrlDataFreeTimeTrialPrivilegeToJson(data as SongUrlDataFreeTimeTrialPrivilege);
 			case PersonalizedPrivatecontentEntity:
 				return personalizedPrivatecontentEntityToJson(data as PersonalizedPrivatecontentEntity);
 			case PersonalizedPrivatecontentResult:
@@ -650,6 +668,18 @@ class JsonConvert<T> {
 		}
 		if(type == (FineListResponsePlaylistsSubscribers).toString()){
 			return FineListResponsePlaylistsSubscribers().fromJson(json);
+		}
+		if(type == (SongUrlEntity).toString()){
+			return SongUrlEntity().fromJson(json);
+		}
+		if(type == (SongUrlData).toString()){
+			return SongUrlData().fromJson(json);
+		}
+		if(type == (SongUrlDataFreeTrialPrivilege).toString()){
+			return SongUrlDataFreeTrialPrivilege().fromJson(json);
+		}
+		if(type == (SongUrlDataFreeTimeTrialPrivilege).toString()){
+			return SongUrlDataFreeTimeTrialPrivilege().fromJson(json);
 		}
 		if(type == (PersonalizedPrivatecontentEntity).toString()){
 			return PersonalizedPrivatecontentEntity().fromJson(json);
@@ -968,6 +998,18 @@ class JsonConvert<T> {
 		}
 		if(<FineListResponsePlaylistsSubscribers>[] is M){
 			return data.map<FineListResponsePlaylistsSubscribers>((e) => FineListResponsePlaylistsSubscribers().fromJson(e)).toList() as M;
+		}
+		if(<SongUrlEntity>[] is M){
+			return data.map<SongUrlEntity>((e) => SongUrlEntity().fromJson(e)).toList() as M;
+		}
+		if(<SongUrlData>[] is M){
+			return data.map<SongUrlData>((e) => SongUrlData().fromJson(e)).toList() as M;
+		}
+		if(<SongUrlDataFreeTrialPrivilege>[] is M){
+			return data.map<SongUrlDataFreeTrialPrivilege>((e) => SongUrlDataFreeTrialPrivilege().fromJson(e)).toList() as M;
+		}
+		if(<SongUrlDataFreeTimeTrialPrivilege>[] is M){
+			return data.map<SongUrlDataFreeTimeTrialPrivilege>((e) => SongUrlDataFreeTimeTrialPrivilege().fromJson(e)).toList() as M;
 		}
 		if(<PersonalizedPrivatecontentEntity>[] is M){
 			return data.map<PersonalizedPrivatecontentEntity>((e) => PersonalizedPrivatecontentEntity().fromJson(e)).toList() as M;

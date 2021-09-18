@@ -19,21 +19,14 @@ class MusicControllerInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ClipRRect(
-            child: music?.al?.picUrl == null
-                ? Image.asset(
-                    'assets/images/playlist_playlist.9.png',
-                    width: 40,
-                    height: 40,
-                    fit: BoxFit.cover,
-                  )
-                : CachedNetworkImage(
-                    imageUrl: '${music?.al?.picUrl}',
-                    width: 40,
-                    height: 40,
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) => ImageDefault.placeholder,
-                    errorWidget: (_, __, ___) => ImageDefault.defaultImageWhite,
-                  ),
+            child: CachedNetworkImage(
+              imageUrl: music?.img ?? '',
+              width: 40,
+              height: 40,
+              fit: BoxFit.cover,
+              placeholder: (context, url) => ImageDefault.placeholder,
+              errorWidget: (_, __, ___) => ImageDefault.defaultImageWhite,
+            ),
             borderRadius: BorderRadius.circular(5),
           ),
           SizedBox(
@@ -50,9 +43,7 @@ class MusicControllerInfo extends StatelessWidget {
                       children: [
                     TextSpan(text: music?.name ?? ''),
                     TextSpan(text: ' - '),
-                    TextSpan(
-                        text:
-                            '${music?.ar?.map((e) => e.name).join(',') ?? ''}'),
+                    TextSpan(text: music?.author ?? ''),
                   ])),
               SizedBox(
                 height: 5,
@@ -63,7 +54,8 @@ class MusicControllerInfo extends StatelessWidget {
                       children: [
                     TextSpan(text: '${progress.toHourMinute}'),
                     TextSpan(text: ' / '),
-                    TextSpan(text: '${music?.dt?.toHourMinute ?? '00:00'}'),
+                    TextSpan(
+                        text: '${music?.duration.toHourMinute ?? '00:00'}'),
                   ])),
             ],
           ),
