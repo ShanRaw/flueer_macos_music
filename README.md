@@ -12,32 +12,42 @@ brew install cmake
 
 ### 功能
 
-- 歌曲播放  已实现
-- 歌单 已实现
-- 歌单 详情
-- 歌曲和歌单搜索 需要优化路由和TextField问题
-- FM 待实现
-- 视频列表
-- 视频播放 简单实现
+- 歌曲播放 
+- 歌单 
+- 歌单详情
+- FM电台 
+- 视频列表 
+- 视频播放 
 
 ### 问题
 
-- 个别音乐无法播放
+- 个别音乐无法播放 由于版权或者没有登录的
 - 没有登录有的音乐时长会是试听的片段
 - TextField macos端异常bug
+- 歌曲和歌单搜索 需要优化路由和TextField问题
+- 独家放送播放 待实现
+- 播放页面自定义 
+
 
 ### 截图
 
-![flutter_macos_music2](https://wbdear.com/upload/2021/09/flutter_macos_music2-44c2386e89ec47d2b473bb7512b719b4.png)
+![music_1](https://wbdear.com/upload/2021/09/music_1-9b840a2f6db1427880ece7c78dc8a9db.png)
 
-![flutter_macos_music3](https://wbdear.com/upload/2021/09/flutter_macos_music3-04e4d978e7bb46e7b946e6d38df7da3d.png)
+![music_2](https://wbdear.com/upload/2021/09/music_2-075aa2455b91492c8516ba6431db7533.png)
 
-![flutter_macos_music4](https://wbdear.com/upload/2021/09/flutter_macos_music4-e3f752590929474dbe9ab58ca26cc225.png)
+![music_3](https://wbdear.com/upload/2021/09/music_3-2febdf5a50d6457f93fe65e2f57beb6e.png)
 
-![flutter_macos_music5](https://wbdear.com/upload/2021/09/flutter_macos_music5-4f4a5615346f4089b1c23938e7277e4d.png)
+![music_4](https://wbdear.com/upload/2021/09/music_4-20c4ba1ea5dd4e9ea3a7d523cd531563.png)
 
-![flutter_macos_music7](https://wbdear.com/upload/2021/09/flutter_macos_music7-db2557ac071a4f8aa901188f36a9e6ed.png)
+![music_5](https://wbdear.com/upload/2021/09/music_5-5fe04c154a184928aa89b97c84a6a138.png)
 
-![flutter_macos_music6](https://wbdear.com/upload/2021/09/flutter_macos_music6-0d82cb01cd7146f58c6a0ade05d525fc.png)
+![music_6](https://wbdear.com/upload/2021/09/music_6-be4d39ac4a2c425ab49239b56027eced.png)
 
-![image](https://wbdear.com/upload/2021/09/image-a4b0834899244faa95c659cf58d6739e.png)
+![music_7](https://wbdear.com/upload/2021/09/music_7-9c08fff51fa64295ba9473657e0cb6c0.png)
+
+![music_8](https://wbdear.com/upload/2021/09/music_8-23dd13b8e6f548e490bed55e8ec0073c.jpg)
+
+![music_9](https://wbdear.com/upload/2021/09/music_9-116b44442c0747db9b1524c275f216d7.jpg)
+
+![music_10](https://wbdear.com/upload/2021/09/music_10-9df526aaec8542cd9dc61fbcf70aafa0.jpg)
+
