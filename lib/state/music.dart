@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:audioplayers/audioplayers_api.dart';
 import 'package:flutter/material.dart';
-import 'package:music/models/automation/playlist_detail_response_entity.dart';
 import 'package:music/models/player_item.dart';
 import 'package:music/utils/player.dart';
+import 'package:music/utils/sys_expansion.dart';
 
 enum PlayControlState { ONE, LOOP, RANDOM_LOOP }
 enum ProgressState { Drag, Normal }
@@ -77,7 +77,7 @@ class MusicState extends ChangeNotifier {
   Future<int> play({required PlayerItem music}) async {
     if (!_playList.contains(music)) {
       _playList.insert(0, music);
-      _playList = _playList.toSet().toList();
+      _playList = _playList.deleteDuplicate;
     }
     _music = music;
     final res = await Player.getInstance().play(music.url, volume: _volume);
@@ -88,7 +88,7 @@ class MusicState extends ChangeNotifier {
   Future<int> plays({required List<PlayerItem> musics}) async {
     if (musics.length == 0) return 0;
     _playList.insertAll(0, musics);
-    _playList = _playList.toSet().toList();
+    _playList = _playList.deleteDuplicate;
     _music = musics[0];
     final res = await Player.getInstance().play(_music!.url, volume: _volume);
     return res;
@@ -97,14 +97,14 @@ class MusicState extends ChangeNotifier {
   //添加一首到播放列表
   void add({required PlayerItem music}) {
     _playList.insert(0, music);
-    _playList = _playList.toSet().toList();
+    _playList = _playList.deleteDuplicate;
     notifyListeners();
   }
 
   //添加多首歌到播放列表
   void addAll({required List<PlayerItem> musics}) {
     _playList.insertAll(0, musics);
-    _playList = _playList.toSet().toList();
+    _playList = _playList.deleteDuplicate;
     notifyListeners();
   }
 

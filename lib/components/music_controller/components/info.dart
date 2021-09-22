@@ -4,7 +4,7 @@ import 'package:music/state/music.dart';
 import 'package:music/utils/function.dart';
 import 'package:music/utils/image_deault.dart';
 import 'package:provider/provider.dart';
-import 'package:music/utils/int_expansion.dart';
+import 'package:music/utils/sys_expansion.dart';
 
 class MusicControllerInfo extends StatelessWidget {
   @override

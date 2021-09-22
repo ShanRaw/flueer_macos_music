@@ -4,7 +4,7 @@ import 'package:music/components/custom_sliver_persistent_header_delegate.dart';
 import 'package:music/pages/mv/state.dart';
 import 'package:music/utils/main_navigator.dart';
 import 'package:provider/provider.dart';
-import 'package:music/utils/int_expansion.dart';
+import 'package:music/utils/sys_expansion.dart';
 
 class MvPage extends StatefulWidget {
   @override

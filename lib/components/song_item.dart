@@ -3,7 +3,7 @@ import 'package:music/models/automation/playlist_detail_response_entity.dart';
 import 'package:music/models/player_item.dart';
 import 'package:music/state/music.dart';
 import 'package:provider/provider.dart';
-import 'package:music/utils/int_expansion.dart';
+import 'package:music/utils/sys_expansion.dart';
 
 class SongItem extends StatelessWidget {
   final PlaylistDetailResponsePlaylistTracks item;

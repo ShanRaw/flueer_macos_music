@@ -14,7 +14,7 @@ import 'package:music/pages/song_list_details/components/song_list_tab.dart';
 import 'package:music/state/music.dart';
 import 'package:music/utils/http.dart';
 import 'package:music/utils/image_deault.dart';
-import 'package:music/utils/int_expansion.dart';
+import 'package:music/utils/sys_expansion.dart';
 import 'package:provider/provider.dart';
 
 class FmDetailPage extends StatefulWidget {

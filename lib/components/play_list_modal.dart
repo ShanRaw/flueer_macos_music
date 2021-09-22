@@ -3,7 +3,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:music/state/music.dart';
 import 'package:provider/provider.dart';
-import 'package:music/utils/int_expansion.dart';
+import 'package:music/utils/sys_expansion.dart';
 
 class PlayListModal extends StatelessWidget {
   @override

@@ -13,4 +13,25 @@ class PlayerItem {
       required this.duration,
       required this.url,
       required this.id});
+
+  Map toJson() {
+    return {
+      'img': img,
+      'name': name,
+      'author': author,
+      'duration': duration,
+      'url': url,
+      'id': id,
+    };
+  }
+
+  factory PlayerItem.fromJson(Map json) {
+    return PlayerItem(
+        img: json['img'],
+        name: json['name'],
+        author: json['author'],
+        duration: json['duration'],
+        url: json['url'],
+        id: json['id']);
+  }
 }
