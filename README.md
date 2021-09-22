@@ -31,23 +31,21 @@ brew install cmake
 
 ### 截图
 
-![music_1](https://wbdear.com/upload/2021/09/music_1-9b840a2f6db1427880ece7c78dc8a9db.png)
+![music_1](https://wbdear.com/upload/2021/09/music_1-618b78adcce242dfb1ff2a0baf7d6ac2.png)
 
-![music_2](https://wbdear.com/upload/2021/09/music_2-075aa2455b91492c8516ba6431db7533.png)
+![music_2](https://wbdear.com/upload/2021/09/music_2-a2f753cccd3141caa5f1c07dac3c741d.png)
 
-![music_3](https://wbdear.com/upload/2021/09/music_3-2febdf5a50d6457f93fe65e2f57beb6e.png)
+![music_3](https://wbdear.com/upload/2021/09/music_3-f672d0b1fb7b4958959e7b0c59d5122b.png)
 
-![music_4](https://wbdear.com/upload/2021/09/music_4-20c4ba1ea5dd4e9ea3a7d523cd531563.png)
+![music_4](https://wbdear.com/upload/2021/09/music_4-285a9b6f2f384e199321d35cd04fceeb.png)
 
-![music_5](https://wbdear.com/upload/2021/09/music_5-5fe04c154a184928aa89b97c84a6a138.png)
+![music_5](https://wbdear.com/upload/2021/09/music_5-5576248cf91d4c8d89ab06985e659b4b.png)
 
-![music_6](https://wbdear.com/upload/2021/09/music_6-be4d39ac4a2c425ab49239b56027eced.png)
+![music_6](https://wbdear.com/upload/2021/09/music_6-52206e9f9d6e4f1eb5e56dbe07416538.png)
 
-![music_7](https://wbdear.com/upload/2021/09/music_7-9c08fff51fa64295ba9473657e0cb6c0.png)
+![music_7](https://wbdear.com/upload/2021/09/music_7-0596cd26296746a0830ad24272191363.png)
 
-![music_8](https://wbdear.com/upload/2021/09/music_8-23dd13b8e6f548e490bed55e8ec0073c.jpg)
+![music_8](https://wbdear.com/upload/2021/09/music_8-99d0927f8b0f478b8c3056a8b7f2ead2.jpg)
 
-![music_9](https://wbdear.com/upload/2021/09/music_9-116b44442c0747db9b1524c275f216d7.jpg)
-
-![music_10](https://wbdear.com/upload/2021/09/music_10-9df526aaec8542cd9dc61fbcf70aafa0.jpg)
+![music_9](https://wbdear.com/upload/2021/09/music_9-f3681e710d4f4c91924d6e2480aabb7f.jpg)
 
