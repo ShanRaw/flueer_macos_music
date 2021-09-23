@@ -13,21 +13,33 @@ class FmState extends ChangeNotifier {
 
   int get current => _current;
 
-  //总页数
-  int _total = 1;
-
-  int get total => _total;
-
   //每次请求加载的数量
-  int _size = 18;
+  int _size = 30;
+
+  bool _loading = false;
+
+  bool _isFish = false;
+
+  bool get isFish => _isFish;
 
   getList() async {
+    _loading = true;
     final res = DjHotEntity().fromJson(await Http.api(api: Apis.djHot, params: {
       'limit': _size,
       'offset': (_current - 1) * _size,
     }));
-    _list = res.djRadios ?? [];
+    _list.addAll(res.djRadios ?? []);
+    _loading = false;
+    _isFish = res.hasMore == false;
     notifyListeners();
+  }
+
+  loadMore() {
+    print('进来了');
+    if (_loading) return;
+    print('通过了');
+    _current++;
+    getList();
   }
 
   Future init() async {
