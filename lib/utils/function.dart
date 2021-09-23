@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:music/models/player_item.dart';
 import 'package:music/state/music.dart';
 
@@ -25,11 +23,13 @@ class CustomFunction {
 
   //去重
   static List<PlayerItem> deleteDuplicate(List<PlayerItem> list) {
+    List<PlayerItem> res = [];
 
-    return list
-        .map((e) => jsonEncode(e.toJson()))
-        .toSet()
-        .map((e) => PlayerItem.fromJson(jsonDecode(e)))
-        .toList();
+    for (int x = 0; x < list.length; x++) {
+      final item = list[x];
+      if (res.indexWhere((element) => element.id == item.id) == -1)
+        res.add(item);
+    }
+    return res;
   }
 }
