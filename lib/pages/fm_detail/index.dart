@@ -27,7 +27,7 @@ class _FmDetailPageState extends State<FmDetailPage> {
   GlobalKey<RefreshIndicatorState> refresh = GlobalKey<RefreshIndicatorState>();
   List<DjProgramPrograms> list = [];
 
-  int size = 40;
+  int size = 30;
   int current = 1;
   int total = 1;
 
@@ -80,6 +80,7 @@ class _FmDetailPageState extends State<FmDetailPage> {
             id: item.id ?? 0));
   }
 
+  //获取歌曲播放列表
   Future<List<PlayerItem>> getSongs() async {
     List<PlayerItem> songs = [];
     final res = SongUrlEntity().fromJson(await Http.api(
@@ -88,15 +89,16 @@ class _FmDetailPageState extends State<FmDetailPage> {
     if (res.code != 200 || res.data?.length == 0) {
       return songs;
     }
-    res.data?.reversed;
-    res.data?.asMap().keys.forEach((index) {
+    list.forEach((e) {
+      final url =
+          res.data?.firstWhere((element) => element.id == e.mainSong?.id).url;
       songs.add(PlayerItem(
-          img: list[index].coverUrl ?? '',
-          name: list[index].name ?? '',
+          img: e.coverUrl ?? '',
+          name: e.name ?? '',
           author: data?.name ?? '',
-          duration: list[index].duration ?? 0,
-          url: res.data![index].url ?? '',
-          id: list[index].id ?? 0));
+          duration: e.duration ?? 0,
+          url: url ?? '',
+          id: e.id ?? 0));
     });
     return songs;
   }

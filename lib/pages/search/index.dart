@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music/pages/search/dj_tab_body.dart';
 import 'package:music/pages/search/song_list_tab_body.dart';
 import 'package:music/pages/search/song_tab_body.dart';
 
@@ -20,7 +21,8 @@ class _SearchPageState extends State<SearchPage> {
   List<TabItemType> menus = [
     TabItemType(name: '单曲', type: 1),
     // TabItemType(name: '歌手', type: 100),
-    TabItemType(name: '歌单', type: 1000)
+    TabItemType(name: '歌单', type: 1000),
+    TabItemType(name: '电台', type: 1000),
   ];
   int active = 0;
 
@@ -74,7 +76,8 @@ class _SearchPageState extends State<SearchPage> {
                     type: 1,
                     keyword: keyword,
                   ),
-                  SearchSongListTabBody(keyword: keyword, type: 1000)
+                  SearchSongListTabBody(keyword: keyword, type: 1000),
+                  SearchDjTabBody(keyword: keyword, type: 1009),
                 ],
               ))
             ],

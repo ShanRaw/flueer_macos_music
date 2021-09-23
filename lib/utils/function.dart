@@ -23,8 +23,9 @@ class CustomFunction {
     }
   }
 
-  //去重复
+  //去重
   static List<PlayerItem> deleteDuplicate(List<PlayerItem> list) {
+
     return list
         .map((e) => jsonEncode(e.toJson()))
         .toSet()

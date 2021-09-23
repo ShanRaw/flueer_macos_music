@@ -37,6 +37,8 @@ import 'package:music/models/automation/playlist_detail_response_entity.dart';
 import 'package:music/generated/json/playlist_detail_response_entity_helper.dart';
 import 'package:music/models/automation/mv_url_entity.dart';
 import 'package:music/generated/json/mv_url_entity_helper.dart';
+import 'package:music/models/automation/search_dj_entity.dart';
+import 'package:music/generated/json/search_dj_entity_helper.dart';
 
 class JsonConvert<T> {
 	T fromJson(Map<String, dynamic> json) {
@@ -264,7 +266,15 @@ class JsonConvert<T> {
 			case MvUrlEntity:
 				return mvUrlEntityFromJson(data as MvUrlEntity, json) as T;
 			case MvUrlData:
-				return mvUrlDataFromJson(data as MvUrlData, json) as T;    }
+				return mvUrlDataFromJson(data as MvUrlData, json) as T;
+			case SearchDjEntity:
+				return searchDjEntityFromJson(data as SearchDjEntity, json) as T;
+			case SearchDjResult:
+				return searchDjResultFromJson(data as SearchDjResult, json) as T;
+			case SearchDjResultDjRadios:
+				return searchDjResultDjRadiosFromJson(data as SearchDjResultDjRadios, json) as T;
+			case SearchDjResultDjRadiosDj:
+				return searchDjResultDjRadiosDjFromJson(data as SearchDjResultDjRadiosDj, json) as T;    }
 		return data as T;
 	}
 
@@ -486,6 +496,14 @@ class JsonConvert<T> {
 				return mvUrlEntityToJson(data as MvUrlEntity);
 			case MvUrlData:
 				return mvUrlDataToJson(data as MvUrlData);
+			case SearchDjEntity:
+				return searchDjEntityToJson(data as SearchDjEntity);
+			case SearchDjResult:
+				return searchDjResultToJson(data as SearchDjResult);
+			case SearchDjResultDjRadios:
+				return searchDjResultDjRadiosToJson(data as SearchDjResultDjRadios);
+			case SearchDjResultDjRadiosDj:
+				return searchDjResultDjRadiosDjToJson(data as SearchDjResultDjRadiosDj);
 			}
 			return data as T;
 		}
@@ -816,6 +834,18 @@ class JsonConvert<T> {
 		if(type == (MvUrlData).toString()){
 			return MvUrlData().fromJson(json);
 		}
+		if(type == (SearchDjEntity).toString()){
+			return SearchDjEntity().fromJson(json);
+		}
+		if(type == (SearchDjResult).toString()){
+			return SearchDjResult().fromJson(json);
+		}
+		if(type == (SearchDjResultDjRadios).toString()){
+			return SearchDjResultDjRadios().fromJson(json);
+		}
+		if(type == (SearchDjResultDjRadiosDj).toString()){
+			return SearchDjResultDjRadiosDj().fromJson(json);
+		}
 
 		return null;
 	}
@@ -1145,6 +1175,18 @@ class JsonConvert<T> {
 		}
 		if(<MvUrlData>[] is M){
 			return data.map<MvUrlData>((e) => MvUrlData().fromJson(e)).toList() as M;
+		}
+		if(<SearchDjEntity>[] is M){
+			return data.map<SearchDjEntity>((e) => SearchDjEntity().fromJson(e)).toList() as M;
+		}
+		if(<SearchDjResult>[] is M){
+			return data.map<SearchDjResult>((e) => SearchDjResult().fromJson(e)).toList() as M;
+		}
+		if(<SearchDjResultDjRadios>[] is M){
+			return data.map<SearchDjResultDjRadios>((e) => SearchDjResultDjRadios().fromJson(e)).toList() as M;
+		}
+		if(<SearchDjResultDjRadiosDj>[] is M){
+			return data.map<SearchDjResultDjRadiosDj>((e) => SearchDjResultDjRadiosDj().fromJson(e)).toList() as M;
 		}
 
 		throw Exception("not found");
