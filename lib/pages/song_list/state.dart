@@ -43,6 +43,7 @@ class SongListSate extends ChangeNotifier {
   Map<int, List<SongListResPlaylists>> get listMap => _listMap;
 
   Future init() async {
+    _active = 0;
     Future.wait([
       getTags(),
       getList(),

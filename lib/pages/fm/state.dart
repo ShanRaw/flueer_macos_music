@@ -18,9 +18,9 @@ class FmState extends ChangeNotifier {
 
   bool _loading = false;
 
-  bool _isFish = false;
+  bool _isFinish = false;
 
-  bool get isFish => _isFish;
+  bool get isFinish => _isFinish;
 
   getList() async {
     _loading = true;
@@ -30,7 +30,7 @@ class FmState extends ChangeNotifier {
     }));
     _list.addAll(res.djRadios ?? []);
     _loading = false;
-    _isFish = res.hasMore == false;
+    _isFinish = res.hasMore == false;
     notifyListeners();
   }
 
@@ -43,6 +43,8 @@ class FmState extends ChangeNotifier {
   }
 
   Future init() async {
+    _list = [];
+    _current = 1;
     getList();
   }
 }

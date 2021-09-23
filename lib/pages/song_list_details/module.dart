@@ -8,8 +8,6 @@ import 'index.dart';
 import 'package:provider/provider.dart';
 
 mixin SongListDetailsModule on State<SongListDetailsPage> {
-  GlobalKey<RefreshIndicatorState> refresh = GlobalKey<RefreshIndicatorState>();
-
   PlaylistDetailResponseEntity? data;
 
   Future onRefresh() async {

@@ -64,12 +64,14 @@ class Pagination extends StatelessWidget {
       ));
     }
 
-    list.add(PaginationItem(
-      page: total,
-      active: current == total,
-      onPressed: total == current ? () {} : () => onChange(total),
-      type: PaginationItemType.Normal,
-    ));
+    if (total > 2) {
+      list.add(PaginationItem(
+        page: total,
+        active: current == total,
+        onPressed: total == current ? () {} : () => onChange(total),
+        type: PaginationItemType.Normal,
+      ));
+    }
     return list;
   }
 

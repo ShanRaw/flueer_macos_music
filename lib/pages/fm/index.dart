@@ -17,6 +17,7 @@ class _FmPageState extends State<FmPage> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      context.read<FmState>().init();
       scrollController.addListener(() {
         if (scrollController.position.pixels >=
             (scrollController.position.maxScrollExtent - 50)) {
@@ -29,7 +30,7 @@ class _FmPageState extends State<FmPage> {
   @override
   Widget build(BuildContext context) {
     final list = context.watch<FmState>().list;
-    final isFish = context.watch<FmState>().isFish;
+    final isFinish = context.watch<FmState>().isFinish;
     return Container(
       padding: EdgeInsets.all(15),
       color: Color(0xff252524),
@@ -75,13 +76,13 @@ class _FmPageState extends State<FmPage> {
                     ))
                 .toList(),
           ),
-          isFish
+          isFinish
               ? SliverToBoxAdapter(
                   child: Container(
                     height: 50,
                     alignment: Alignment.center,
                     child: Text(
-                      '加载完成',
+                      '没有更多了',
                       style: TextStyle(color: Colors.white60, fontSize: 12),
                     ),
                   ),

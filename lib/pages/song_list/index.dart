@@ -20,6 +20,9 @@ class _SongListPageState extends State<SongListPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      context.read<SongListSate>().init();
+    });
   }
 
   void scrollTop() {

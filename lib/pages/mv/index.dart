@@ -18,14 +18,17 @@ class _MvPageState extends State<MvPage> {
   @override
   void initState() {
     super.initState();
-    _scrollController.addListener(() async {
-      if (_scrollController.position.pixels >=
-          (_scrollController.position.maxScrollExtent - 50)) {
-        if (_isLoading) return;
-        _isLoading = true;
-        await context.read<MvState>().getListData();
-        _isLoading = false;
-      }
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      context.read<MvState>().init();
+      _scrollController.addListener(() async {
+        if (_scrollController.position.pixels >=
+            (_scrollController.position.maxScrollExtent - 50)) {
+          if (_isLoading) return;
+          _isLoading = true;
+          await context.read<MvState>().getListData();
+          _isLoading = false;
+        }
+      });
     });
   }
 
@@ -34,6 +37,7 @@ class _MvPageState extends State<MvPage> {
     final tabs = context.watch<MvState>().tabs;
     final active = context.watch<MvState>().active;
     final list = context.watch<MvState>().list;
+    final isFinish = context.watch<MvState>().isFinish;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 30),
       color: Color(0xff252524),
@@ -83,7 +87,7 @@ class _MvPageState extends State<MvPage> {
             children: list
                 .map((e) => TextButton(
                     onPressed: () {
-                      MainNavigator.push('/mv_detail',arguments: e);
+                      MainNavigator.push('/mv_detail', arguments: e);
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -146,7 +150,28 @@ class _MvPageState extends State<MvPage> {
                       ],
                     )))
                 .toList(),
-          )
+          ),
+          isFinish
+              ? SliverToBoxAdapter(
+                  child: Container(
+                    height: 50,
+                    alignment: Alignment.center,
+                    child: Text(
+                      '没有更多了',
+                      style: TextStyle(color: Colors.white60, fontSize: 12),
+                    ),
+                  ),
+                )
+              : SliverToBoxAdapter(
+                  child: Container(
+                    height: 50,
+                    alignment: Alignment.center,
+                    child: Text(
+                      '正在加载中',
+                      style: TextStyle(color: Colors.white60, fontSize: 12),
+                    ),
+                  ),
+                )
         ],
       ),
     );

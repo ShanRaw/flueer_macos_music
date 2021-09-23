@@ -7,6 +7,7 @@ class MvState extends ChangeNotifier {
   int _size = 20;
 
   bool _isFinish = false;
+  bool get isFinish =>_isFinish;
 
   List<MvTapItem> tabs = [
     MvTapItem(name: '内地', id: '内地'),
@@ -46,6 +47,8 @@ class MvState extends ChangeNotifier {
 
   Future init() async {
     _isFinish = false;
+    _active = 0;
+    _list = [];
     getListData();
   }
 }

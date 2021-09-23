@@ -6,7 +6,6 @@ import 'package:music/config/apis.dart';
 import 'package:music/models/automation/dj_detail_entity.dart';
 import 'package:music/models/automation/dj_hot_entity.dart';
 import 'package:music/models/automation/dj_program_entity.dart';
-import 'package:music/models/automation/playlist_detail_response_entity.dart';
 import 'package:music/models/automation/song_url_entity.dart';
 import 'package:music/models/player_item.dart';
 import 'package:music/pages/song_list_details/components/head.dart';
@@ -24,7 +23,6 @@ class FmDetailPage extends StatefulWidget {
 
 class _FmDetailPageState extends State<FmDetailPage> {
   DjDetailData? data;
-  GlobalKey<RefreshIndicatorState> refresh = GlobalKey<RefreshIndicatorState>();
   List<DjProgramPrograms> list = [];
 
   int size = 30;
@@ -55,6 +53,7 @@ class _FmDetailPageState extends State<FmDetailPage> {
       total = ((res.count ?? 0) / size).ceil();
       list = res.programs ?? [];
     });
+    print(total);
   }
 
   Future onRefresh() async {
@@ -116,7 +115,7 @@ class _FmDetailPageState extends State<FmDetailPage> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-      refresh.currentState?.show();
+      onRefresh();
     });
   }
 
@@ -124,129 +123,125 @@ class _FmDetailPageState extends State<FmDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xff252524),
-      body: RefreshIndicator(
-        key: refresh,
-        onRefresh: onRefresh,
-        child: CustomScrollView(
-          physics: AlwaysScrollableScrollPhysics(),
-          slivers: [
-            SliverToBoxAdapter(
-              child: SongListDetailsHead(
-                data: CustomListHeadModel(
-                    name: data?.name ?? '',
-                    img: data?.picUrl ?? '',
-                    type: SongType.DJ,
-                    nickname: data?.dj?.nickname ?? '',
-                    tags: data?.category ?? '',
-                    playCount: data?.shareCount ?? 0,
-                    trackCount: data?.programCount ?? 0,
-                    createTime: data?.createTime ?? 0,
-                    avatarUrl: data?.dj?.avatarUrl ?? '',
-                    description: data?.desc ?? ''),
-                playAll: playAll,
-                addAll: addAll,
-              ),
+      body: CustomScrollView(
+        physics: AlwaysScrollableScrollPhysics(),
+        slivers: [
+          SliverToBoxAdapter(
+            child: SongListDetailsHead(
+              data: CustomListHeadModel(
+                  name: data?.name ?? '',
+                  img: data?.picUrl ?? '',
+                  type: SongType.DJ,
+                  nickname: data?.dj?.nickname ?? '',
+                  tags: data?.category ?? '',
+                  playCount: data?.shareCount ?? 0,
+                  trackCount: data?.programCount ?? 0,
+                  createTime: data?.createTime ?? 0,
+                  avatarUrl: data?.dj?.avatarUrl ?? '',
+                  description: data?.desc ?? ''),
+              playAll: playAll,
+              addAll: addAll,
             ),
-            SliverPersistentHeader(
-                pinned: true,
-                delegate: CustomSliverPersistentHeaderDelegate(
-                    child: SongListTab(
-                      type: SongType.DJ,
-                    ),
-                    height: 50)),
-            SliverList(
-                delegate: SliverChildListDelegate(list
-                    .map(
-                      (e) => SizedBox(
-                        height: 65,
-                        child: InkWell(
-                            onDoubleTap: () => play(e),
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 7.5, horizontal: 30),
-                              child: Row(
-                                children: <Widget>[
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(5),
-                                    child: CachedNetworkImage(
-                                      imageUrl: e.coverUrl ?? '',
-                                      placeholder: (_, __) =>
-                                          ImageDefault.placeholder,
-                                      errorWidget: (_, __, ___) =>
-                                          ImageDefault.defaultImageWhite,
-                                      width: 50,
-                                      height: 50,
-                                    ),
+          ),
+          SliverPersistentHeader(
+              pinned: true,
+              delegate: CustomSliverPersistentHeaderDelegate(
+                  child: SongListTab(
+                    type: SongType.DJ,
+                  ),
+                  height: 50)),
+          SliverList(
+              delegate: SliverChildListDelegate(list
+                  .map(
+                    (e) => SizedBox(
+                      height: 65,
+                      child: InkWell(
+                          onDoubleTap: () => play(e),
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 7.5, horizontal: 30),
+                            child: Row(
+                              children: <Widget>[
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(5),
+                                  child: CachedNetworkImage(
+                                    imageUrl: e.coverUrl ?? '',
+                                    placeholder: (_, __) =>
+                                        ImageDefault.placeholder,
+                                    errorWidget: (_, __, ___) =>
+                                        ImageDefault.defaultImageWhite,
+                                    width: 50,
+                                    height: 50,
                                   ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Expanded(
-                                      child: Text(
-                                    e.name ?? '',
-                                    style: TextStyle(color: Colors.white60),
-                                  )),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  SizedBox(
-                                    width: 150,
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.play_arrow_rounded,
-                                          size: 12,
-                                          color: Colors.white30,
-                                        ),
-                                        Text(
-                                          ' ${e.listenerCount ?? 0}',
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              color: Colors.white30),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  SizedBox(
-                                    width: 150,
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.favorite_outline_rounded,
-                                          size: 12,
-                                          color: Colors.white30,
-                                        ),
-                                        Text(
-                                          ' ${e.likedCount ?? 0}',
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              color: Colors.white30),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  SizedBox(
-                                    width: 60,
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Expanded(
                                     child: Text(
-                                      '${e.duration?.toHourMinute ?? '00:00'}',
-                                      style: TextStyle(
-                                          fontSize: 12, color: Colors.white30),
-                                    ),
+                                  e.name ?? '',
+                                  style: TextStyle(color: Colors.white60),
+                                )),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                SizedBox(
+                                  width: 150,
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.play_arrow_rounded,
+                                        size: 12,
+                                        color: Colors.white30,
+                                      ),
+                                      Text(
+                                        ' ${e.listenerCount ?? 0}',
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.white30),
+                                      )
+                                    ],
                                   ),
-                                ],
-                              ),
-                            )),
-                      ),
-                    )
-                    .toList())),
-          ],
-        ),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                SizedBox(
+                                  width: 150,
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.favorite_outline_rounded,
+                                        size: 12,
+                                        color: Colors.white30,
+                                      ),
+                                      Text(
+                                        ' ${e.likedCount ?? 0}',
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.white30),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                SizedBox(
+                                  width: 60,
+                                  child: Text(
+                                    '${e.duration?.toHourMinute ?? '00:00'}',
+                                    style: TextStyle(
+                                        fontSize: 12, color: Colors.white30),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )),
+                    ),
+                  )
+                  .toList())),
+        ],
       ),
       bottomNavigationBar: Padding(
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),

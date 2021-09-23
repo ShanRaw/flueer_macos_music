@@ -5,7 +5,6 @@ import 'package:music/pages/fine_list/index.dart';
 import 'package:music/utils/http.dart';
 
 mixin FineListModule on State<FineListPage> {
-  GlobalKey<RefreshIndicatorState> refresh = GlobalKey<RefreshIndicatorState>();
   List<FineListResponsePlaylists> list = [];
 
   @override
@@ -13,7 +12,7 @@ mixin FineListModule on State<FineListPage> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-      refresh.currentState?.show();
+      getList();
     });
   }
 
